@@ -78,11 +78,23 @@ class ScioController {
 			Scio scio = Scio.get(editCommand.id)
 			if(scio.canEdit(user)){
 				scioService.editScio(editCommand.id, editCommand.content, editCommand.tags, editCommand.branch)
-				redirect action: "show", params : [id: scio.id]
+				redirect action: "show", params: [id: scio.id]
 			}else{
 				redirect controller: "login", action: "denied"
 			}
 		}
+	}
+	
+	def recommend() {
+		if(params.id) {
+			Scio scio = Scio.get(params.id as Long)
+			scio.addRecommendation()
+			if (scio.save(flush: true)) {
+				flash.recommend = true
+				redirect action: "show", params: [id: scio.id]
+			}
+		}
+		return
 	}
 
 	private User loggedUser(){
@@ -99,6 +111,7 @@ class ScioController {
 		tags: scio.tags*.name.join(' '),
 		branch : branchName )
 	}
+	
 }
 
 class CreateSCIOCommand {
