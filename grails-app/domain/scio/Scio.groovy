@@ -34,12 +34,12 @@ class Scio {
 
 	public Snapshot defaultContentForBranch(String branchName){
 		def branch = branches.find { it.name == branchName }
-		branch.defaultContent()
+		branch?.defaultContent()
 	}
 
 	public List recentHistory(String branchName){
 		def branch = branches.find { it.name == branchName }
-		branch.recentHistory()
+		branch?.recentHistory()
 	}
 	
 	public boolean hasBranch(String branchName){
@@ -48,12 +48,24 @@ class Scio {
 	
 	public boolean hasBranchAndSnapshot(String branchName, Integer snapshot){
 		def branch = branches.find { it.name == branchName }
-		branch && branch.hasSnapshot(snapshot)
+		branch?.hasSnapshot(snapshot)
 	}
 	
 	public Snapshot findSnapshot(String branchName, Integer snapshot){
 		def branch = branches.find { it.name == branchName }
 		branch?.findSnapshot(snapshot)
+	}
+	
+	public boolean canEdit(User user){
+		owner.username == user?.username
+	}
+	
+	public void addSnapshotToBranch(String content, String branchName){
+		def branch = branches.find { it.name == branchName }
+		Snapshot head = branch.head
+		Snapshot newSnapshot = new Snapshot(content: content, previous: head).save(failOnError: true)
+		branch.head = newSnapshot
+		branch.save(failOnError: true)
 	}
 
 	static constraints = {

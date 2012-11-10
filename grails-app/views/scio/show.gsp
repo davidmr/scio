@@ -5,7 +5,7 @@
 <meta name="layout" content="main"/>
 </head>
 <body>
-	<h1>${scio.title}</h1>
+	<h1>${scio.title}</h1><g:if test="${canEdit}"><g:link controller="scio" action="edit" params="${[id: scio.id, branch: scio.masterBranch]}">Edit</g:link></g:if>
 	<h2>By: ${scio.owner.username}</h2>
 	<div class="tags">
 		<g:each in="${scio.tags}">

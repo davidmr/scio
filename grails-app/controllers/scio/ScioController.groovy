@@ -8,7 +8,9 @@ class ScioController {
 
 	def show(Integer id) {
 		if(id) {
-			[scio : Scio.get(id) ]
+			User user = loggedUser()
+			Scio scio = Scio.get(id)
+			[scio : scio, canEdit: scio.canEdit(user)]
 		}else{
 			render status: 404
 		}
@@ -58,8 +60,44 @@ class ScioController {
 		}
 	}
 
+	def edit(){
+		Scio scio = Scio.get(params.id as Integer)
+		User user = loggedUser()
+		if(scio.canEdit(user)){
+			return [editCommand : scioToEditCommand(scio, params.branch)]
+		}else{
+			redirect controller: "login", action: "denied"
+		}
+	}
+
+	def doedit(EditSCIOCommand editCommand){
+		if(editCommand.hasErrors()){
+			render(view: "edit", model : [editCommand : editCommand])
+		}else{
+			User user = loggedUser()
+			Scio scio = Scio.get(editCommand.id)
+			if(scio.canEdit(user)){
+				scioService.editScio(editCommand.id, editCommand.content, editCommand.tags, editCommand.branch)
+				redirect action: "show", params : [id: scio.id]
+			}else{
+				redirect controller: "login", action: "denied"
+			}
+		}
+	}
+
 	private User loggedUser(){
-		User.findByUsername(springSecurityService.principal.username)
+		if(springSecurityService.loggedIn){
+			User.findByUsername(springSecurityService.principal.username)
+		}
+	}
+
+	private EditSCIOCommand scioToEditCommand(Scio scio, String branchName){
+		return new EditSCIOCommand(
+		id: scio.id,
+		title: scio.title,
+		content: scio.defaultContentForBranch(branchName).content,
+		tags: scio.tags*.name.join(' '),
+		branch : branchName )
 	}
 }
 
@@ -128,6 +166,46 @@ class CloneSCIOCommand {
 				return true
 			}else{
 				return "nullable"
+			}
+		})
+	}
+}
+
+class EditSCIOCommand {
+
+	Integer id
+
+	String title
+
+	String content
+
+	String tags
+
+	String branch
+
+	static constraints = {
+		title(blank: false)
+		id(validator : {
+			Scio scio = Scio.get(it)
+			if(it && scio){
+				return true
+			}else{
+				return "nullable"
+			}
+		})
+		content(blank: false)
+		tags(nullable: true, blank: true)
+		branch(blank: false, validator : { val, obj ->
+			if(!obj.id){
+				//does not validate if id not specified
+				return true
+			}
+
+			def scio = Scio.get(obj.id)
+			if(scio && scio.hasBranch(val)){
+				return true
+			}else{
+				return "notfound"
 			}
 		})
 	}
