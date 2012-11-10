@@ -26,4 +26,12 @@ class ScioService {
 		clonedBranches.each { clone.addToBranches(it) }
 		clone.save(failOnError: true)
 	}
+	
+	def editScio(Integer scioId, String content, String tags, String branch) {
+		Scio scio = Scio.get(scioId)
+		scio.addSnapshotToBranch(content, branch)
+		def tagSet = findTags(tags)
+		scio.tags = tagSet
+		scio.save(failOnError: true)
+	}
 }

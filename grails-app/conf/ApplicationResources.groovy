@@ -19,4 +19,9 @@ modules = {
 		dependsOn 'jquery'
 		resource url : 'js/searchScios.js'
 	}
+	
+	scio {
+		dependsOn 'jquery'
+		resource url : 'js/scio.js'
+	}
 }
