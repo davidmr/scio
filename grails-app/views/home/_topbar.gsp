@@ -10,7 +10,7 @@
 					<input class="span2" type="text" placeholder="Username"> <input
 						class="span2" type="password" placeholder="Password">
 					<button type="submit" class="btn btn-scio-light">Sign in</button>
-					<button type="submit" class="btn">New to Scio?</button>
+					<button type="submit" class="btn">Sign up</button>
 				</form>
 			</div>
 		</div>
