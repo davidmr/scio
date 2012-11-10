@@ -15,14 +15,14 @@ modules = {
 		resource url : 'images/owl.png'
 	}
 	
-	searchScios {
+	searchScio {
 		dependsOn 'jquery'
-		resource url : 'js/searchScios.js'
+		resource url : 'js/searchScio.js'
 	}
 	
-	scio {
+	editScio {
 		dependsOn 'jquery'
-		resource url : 'js/scio.js'
+		resource url : 'js/editScio.js'
 	}
 	
 	diff {

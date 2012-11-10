@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta name='layout' content='main'/>
-		<r:require modules="searchScios"/>
+		<r:require modules="searchScio"/>
 	</head>
 	<body>
 		<div class="row scio-container-minus">

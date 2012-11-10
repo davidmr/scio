@@ -82,6 +82,18 @@ class ScioController {
 		}
 	}
 
+	def recommend() {
+		if(params.id) {
+			Scio scio = Scio.get(params.id as Long)
+			scio.addRecommendation()
+			if (scio.save(flush: true)) {
+				flash.recommend = true
+				redirect action: "show", params: [id: scio.id]
+			}
+		}
+		return
+	}
+
 	def afteredit(String id){
 		[scio : safeGetScio(id)]
 	}
@@ -101,7 +113,7 @@ class ScioController {
 			render(view: "afteredit", model: [merge : merge, scio : scio])
 		}
 	}
-	
+
 	private User loggedUser(){
 		if(springSecurityService.loggedIn){
 			User.findByUsername(springSecurityService.principal.username)
@@ -124,7 +136,9 @@ class ScioController {
 				if(scio != null){
 					return scio
 				}
-			}catch(NumberFormatException e){}
+			}catch(NumberFormatException e){
+
+			}
 		}
 		throw new SCIONotFoundException()
 	}

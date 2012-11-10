@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <meta name="layout" content="main"/>
-<r:require modules="bbcode,bootstrap-typeahead,scio"/>
+<r:require modules="bbcode,bootstrap-typeahead,editScio"/>
 </head>
 <body>
 	<h1>Write a new SCIO</h1>
