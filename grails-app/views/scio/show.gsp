@@ -13,7 +13,7 @@
 		</g:each>
 	</div>
 	<div class="scio-content">
-		${scio.masterContent().content}
+		<g:renderSnapshot snapshot="${scio.masterContent()}" />
 	</div>
 	<g:link controller="scio" action="clone">Improve this SCIO!</g:link>
 	<h3>Branches</h3>
@@ -24,7 +24,7 @@
 	<h3>Recent history</h3>
 	<ul>
 	<g:each in="${scio.masterRecentHistory()}">
-		<li><g:link controller="scio" action="version" params="${[id: scio.id, branch: scio.masterBranch, version: it.id]}"><g:formatDate format="yyyy-MM-dd HH:mm" date="${it.dateCreated}"/></g:link>
+		<li><g:link controller="scio" action="version" params="${[id: scio.id, branch: scio.masterBranch, snapshot: it.id]}"><g:snapshotDate snapshot="${it}"/></g:link>
 	</g:each>
 	</ul>
 </body>

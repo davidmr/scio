@@ -36,10 +36,14 @@ class ScioController {
 		render(template: "list", model: [scioList : []])
 	}
 
-	def branch() {
-	}
-
-	def version() {
+	def version(VersionSCIOCommand versionCommand){
+		if(versionCommand.hasErrors()){
+			render(view : "version", model : [versionCommand : versionCommand])
+		}else{
+			Scio scio = Scio.get(versionCommand.id)
+			Snapshot snapshot = scio.findSnapshot(versionCommand.branch, versionCommand.snapshot)
+			[scio: scio, snapshot: snapshot]
+		}
 	}
 
 	def create() {
@@ -65,7 +69,7 @@ class ScioController {
 class CreateSCIOCommand {
 
 	String title
-
+ 
 	String content
 	
 	String tags
@@ -74,5 +78,42 @@ class CreateSCIOCommand {
 		title(blank: false)
 		content(blank: false)
 		tags(nullable: true, blank: true)
+	}
+}
+
+class VersionSCIOCommand {
+	
+	Integer id
+	
+	String branch
+	
+	Integer snapshot
+	
+	static constraints = {
+		id(nullable: false)
+		branch(blank: false, validator : { val, obj ->
+			if(!obj.id){ //does not validate if id not specified
+				return true
+			}
+			
+			def scio = Scio.get(obj.id)
+			if(scio && scio.hasBranch(val)){
+				return true
+			}else{
+				return "notfound"
+			}
+		})
+		snapshot(nullable: false, validator : { val, obj ->
+			if(!obj.id || !obj.branch){ //does not validate if id or branch not specified
+				return true
+			}
+			
+			def scio = Scio.get(obj.id)
+			if(scio && scio.hasBranchAndSnapshot(obj.branch, val)){
+				return true
+			}else{
+				return "notfound"
+			}
+		})
 	}
 }

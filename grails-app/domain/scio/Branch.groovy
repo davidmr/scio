@@ -17,9 +17,24 @@ class Branch {
 		Snapshot snapshot = head
 		while(snapshot != null && history.size() < 5){
 			history << snapshot
-			snapshot = head.previous
+			snapshot = snapshot.previous
 		}
 		history
+	}
+	
+	public boolean hasSnapshot(Integer snapshotId){
+		findSnapshot(snapshotId) != null
+	}
+	
+	public Snapshot findSnapshot(Integer snapshotId){
+		Snapshot snapshot = head
+		while(snapshot != null){
+			if(snapshot.id == snapshotId){
+				return snapshot
+			}
+			snapshot = snapshot.previous
+		}
+		return null
 	}
 	
     static constraints = {

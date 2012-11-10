@@ -41,6 +41,20 @@ class Scio {
 		def branch = branches.find { it.name == branchName }
 		branch.recentHistory()
 	}
+	
+	public boolean hasBranch(String branchName){
+		branches.find { it.name == branchName } != null
+	}
+	
+	public boolean hasBranchAndSnapshot(String branchName, Integer snapshot){
+		def branch = branches.find { it.name == branchName }
+		branch && branch.hasSnapshot(snapshot)
+	}
+	
+	public Snapshot findSnapshot(String branchName, Integer snapshot){
+		def branch = branches.find { it.name == branchName }
+		branch?.findSnapshot(snapshot)
+	}
 
 	static constraints = {
 		title(blank: false)
