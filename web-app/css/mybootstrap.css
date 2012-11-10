@@ -16,17 +16,6 @@
 	background-color: #0c220c;
 }
 
-/* FORMS */
-.well {
-	min-height: 200px;
-	padding: 20px 40px 20px 40px;
-	background-color: #f1efe3;
-}
-
-.well .buttons,.well .links {
-	text-align: right;
-}
-
 /* BUTTONS */
 .btn-scio {
 	color: #ffffff;
@@ -91,8 +80,20 @@ textarea:focus,input[type="text"]:focus,input[type="password"]:focus,input[type=
 	transition: border linear 0.2s, box-shadow linear 0.2s;
 }
 
+input:focus:required:invalid:focus,textarea:focus:required:invalid:focus,select:focus:required:invalid:focus {
+	border-color: #939062;
+	-webkit-box-shadow: 0 0 6px #939062;
+	-moz-box-shadow: 0 0 6px #939062;
+	box-shadow: 0 0 6px #939062;
+}
+
+input:focus:required:invalid,textarea:focus:required:invalid,select:focus:required:invalid {
+	color: #939062;
+	border-color: #939062;
+}
+
 /* LINKS */
 a {
-  color: #3d7b3d;
-  text-decoration: none;
+	color: #3d7b3d;
+	text-decoration: none;
 }
