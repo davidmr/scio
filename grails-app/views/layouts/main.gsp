@@ -1,9 +1,11 @@
+<%@ page import="org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils" %>
+
 <!doctype html>
 <html lang="en" class="no-js">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Scio - What do you know?</title>
+	<title>Scio - Share knowledge</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="${resource(dir: 'images', file: 'owl.png')}" type="image/x-icon">
 	<link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
@@ -27,7 +29,7 @@
 						<li class="active"><a href="#">About</a></li>
 					</ul>
 					<sec:ifNotLoggedIn>
-						<form action='${postUrl}' method='POST' id='loginForm' class='navbar-form little pull-right' autocomplete='off'>
+						<form action='${request.contextPath}${SpringSecurityUtils.securityConfig.apf.filterProcessesUrl}' method='POST' id='loginForm' class='navbar-form little pull-right' autocomplete='off'>
 							<input name='j_username' id='username' class="span2" type="text" placeholder="Username"> 
 							<input name='j_password' id='password' class="span2" type="password" placeholder="Password">
 							
@@ -36,7 +38,12 @@
 						</form>
 					</sec:ifNotLoggedIn>
 					<sec:ifLoggedIn>
-						<g:link controller="logout" class="btn pull-right">Log out</g:link>
+						<div class="pull-right">
+							<span class="scio-username">
+								<sec:loggedInUserInfo field="username"/>
+							</span>
+							<g:link controller="logout" class="btn">Log out</g:link>
+						</div>
 					</sec:ifLoggedIn>
 				</div>
 			</div>
