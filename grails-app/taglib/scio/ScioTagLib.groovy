@@ -11,5 +11,5 @@ class ScioTagLib {
 	def renderSnapshot = { attrs ->
 		out << renderBBCodeService.render(attrs.snapshot.content)
 	}
-
+	
 }

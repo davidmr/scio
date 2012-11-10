@@ -16,4 +16,5 @@ class Snapshot {
 	static mapping = {
 		content(type: 'text')
 	}
+	
 }
