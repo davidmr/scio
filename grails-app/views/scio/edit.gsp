@@ -16,7 +16,6 @@
   		<g:hiddenField name="tags" value="${editCommand.tags}" id="tagsField"/>
   		<g:hiddenField name="findTagsUrl" value="${createLink(controller: 'tag', action: 'search')}"/>
   		<g:hiddenField name="title" value="${editCommand.title}"/>
-  		<g:hiddenField name="branch" value="${editCommand.branch}"/>
   		<br />
   		<input type="submit" value="Edit SCIO"/>
   	</g:form>

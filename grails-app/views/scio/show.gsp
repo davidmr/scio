@@ -4,12 +4,7 @@
 	<meta name="layout" content="main"/>
 </head>
 <body>
-	<h1>${scio.title}</h1>
-	
-	<g:if test="${canEdit}">
-		<g:link controller="scio" action="edit" params="${[id: scio.id, branch: scio.masterBranch]}">Edit</g:link>
-	</g:if>
-	
+	<h1>${scio.title}</h1><g:if test="${canEdit}"><g:link controller="scio" action="edit" params="${[id: scio.id]}">Edit</g:link></g:if>
 	<h2>By: ${scio.owner.username}</h2>
 	Recommendations ${scio.recommendations}
 	
@@ -20,7 +15,7 @@
 	</div>
 	
 	<div class="scio-content">
-		<g:renderSnapshot snapshot="${scio.masterContent()}" />
+		<g:renderSnapshot snapshot="${scio.content()}" />
 	</div>
 	
 	<g:link controller="scio" action="clone" params="${[id: scio.id]}">Improve this SCIO!</g:link>
@@ -30,9 +25,9 @@
 	
 	<h3>Recent history</h3>
 	<ul>
-		<g:each in="${scio.masterRecentHistory()}">
-			<li><g:link controller="scio" action="version" params="${[id: scio.id, branch: scio.masterBranch, snapshot: it.id]}"><g:snapshotDate snapshot="${it}"/></g:link>
-		</g:each>
+	<g:each in="${scio.recentHistory()}">
+		<li><g:link controller="scio" action="version" params="${[id: scio.id, snapshot: it.id]}"><g:snapshotDate snapshot="${it}"/></g:link>
+	</g:each>
 	</ul>
 	
 </body>
