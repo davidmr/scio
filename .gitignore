@@ -8,3 +8,8 @@ target
 /plugins
 /web-app/plugins
 /web-app/WEB-INF/classes
+target-eclipse/
+.classpath
+.project
+.directory
+.link_to_grails_plugins/
