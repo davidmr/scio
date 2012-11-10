@@ -20,10 +20,11 @@ class BootStrap {
 				Tag tag3 = new Tag(name: "123").save(failOnError: true)
 				Tag tag4 = new Tag(name: "tag100").save(failOnError: true)
 				
-				Set tags = [tag1, tag2, tag3, tag4] as Set
+				Set tags1 = [tag1, tag2] as Set
+				Set tags2 = [tag3, tag4] as Set
 				
-				Scio example = new Scio(title: 'Title', owner: user)
-				example.save(failOnError: true)
+				Scio example1 = new Scio(title: 'Title 1', owner: user)
+				example1.save(failOnError: true)
 				
 				String bbcodeContent = """[b]strong[/b]
 										[i]italic[/i]
@@ -50,10 +51,15 @@ class BootStrap {
 				Branch master = new Branch(name : "master", head: snapshot2)
 				Branch masterb = new Branch(name : "master_b", head: snapshot3)
 				
-				example.addToBranches(master)
-				example.addToBranches(masterb)
-				example.tags = tags
-				example.save(failOnError: true)
+				example1.addToBranches(master)
+				example1.addToBranches(masterb)
+				example1.tags = tags1
+				example1.save(failOnError: true)
+				
+				Scio example2 = new Scio(title: 'Title 2', owner: user)
+				example2.save(failOnError: true)
+				example2.init("This is the content of the scio 2", tags2)
+				example2.save(failOnError: true)
 			}
 		}
     }

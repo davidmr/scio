@@ -11,7 +11,7 @@ import org.junit.*
 @TestFor(ScioTagLib)
 class ScioTagLibTests {
 
-    void testSomething() {
-        fail "Implement me"
-    }
+	void testSomething() {
+		fail "Implement me"
+	}
 }
