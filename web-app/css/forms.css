@@ -1,0 +1,15 @@
+/* FORMS */
+.well {
+	min-height: 200px;
+	padding: 20px 40px 20px 40px;
+	background-color: white;
+	display: table;
+}
+
+.well .buttons,.well .links {
+	text-align: right;
+}
+
+.required-indicator {
+	color: #B94A48;
+}
