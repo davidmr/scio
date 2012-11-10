@@ -47,6 +47,8 @@
 			</div>
 		</div>
 	</div>
+	
+	<r:layoutResources/>
 	<!-- /container -->
 </body>
 </html>
