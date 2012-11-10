@@ -2,7 +2,6 @@
 <html>
 <head>
 	<meta name="layout" content="main"/>
-	<r:require module="allScio" />
 </head>
 <body>
 	<h1>${scio.title}</h1>
