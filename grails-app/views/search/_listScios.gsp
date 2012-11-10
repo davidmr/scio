@@ -10,7 +10,7 @@
 	<p>
 		<span class="font-little">${scio.owner}</span> - 
 		<span class="font-little">
-			<g:snapshotDate snapshot="${scio.masterContent()}" />
+			<g:snapshotDate snapshot="${scio.content()}" />
 		</span>
 	</p>
 </g:each>
