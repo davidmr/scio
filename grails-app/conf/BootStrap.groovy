@@ -23,7 +23,7 @@ class BootStrap {
 				Set tags1 = [tag1, tag2] as Set
 				Set tags2 = [tag3, tag4] as Set
 				
-				Scio example1 = new Scio(title: 'Title 1', owner: user)
+				Scio example1 = new Scio(title: 'Title 1', owner: user, recommendations: 5)
 				example1.save(failOnError: true)
 				
 				String bbcodeContent = """[b]strong[/b]
@@ -56,10 +56,20 @@ class BootStrap {
 				example1.tags = tags1
 				example1.save(failOnError: true)
 				
-				Scio example2 = new Scio(title: 'Title 2', owner: user)
+				Scio example2 = new Scio(title: 'Title 2', owner: user, recommendations: 4)
 				example2.save(failOnError: true)
 				example2.init("This is the content of the scio 2", tags2)
 				example2.save(failOnError: true)
+				
+				Scio example3 = new Scio(title: 'Title 3', owner: user, recommendations: 3)
+				example3.save(failOnError: true)
+				example3.init("This is the content of the scio 3", tags2)
+				example3.save(failOnError: true)
+				
+				Scio example4 = new Scio(title: 'Title 4', owner: user, recommendations: 0)
+				example4.save(failOnError: true)
+				example4.init("This is the content of the scio 4", tags2)
+				example4.save(failOnError: true)
 			}
 		}
     }

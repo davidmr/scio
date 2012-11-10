@@ -41,4 +41,5 @@ class Branch {
 		name(blank: false)
 		head(nullable: false)
     }
+	
 }

@@ -8,17 +8,18 @@ class SearchController {
 		if (params.tag) {
 			def tagsText = params.tag.replaceAll("[ ]+"," ")
 			def tagsList = tagsText.split(" ")
-			def scioList = findByTag(tagsList)
+			def scioList = findByTag(tagsList, 5)
 			
 			render(template: "listScios", model:[scioList: scioList])
 		}
 	}
 	
 	def searchFeatured() {
-		render(template: "listScios", model: [scioList : []])
+		def scioList = Scio.list([sort: 'recommendations', order: 'desc', max: 5])
+		render(template: "listScios", model: [scioList : scioList])
 	}
 	
-	List findByTag(tagsList) {
+	List findByTag(tagsList, max) {
 		def scioList = Scio.createCriteria().listDistinct() {
 			tags {
 				or {
@@ -27,6 +28,7 @@ class SearchController {
 					}
 				}
 			}
+			maxResults(max)
 		}
 		return scioList
 	}
