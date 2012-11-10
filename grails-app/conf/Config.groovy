@@ -98,8 +98,9 @@ grails.plugins.springsecurity.authority.className = 'scio.Role'
 grails.plugins.springsecurity.securityConfigType = "InterceptUrlMap"
 
 grails.plugins.springsecurity.interceptUrlMap = [
-	'/scio/*/create' : ['ROLE_USER'],
-	'/scio/clone/*/*/' : ['ROLE_USER'],
+	'/scio/create' : ['ROLE_USER'],
+	'/scio/clone/**' : ['ROLE_USER'],
+	'/home/user' : ['ROLE_USER'],
 	'/**': ['IS_AUTHENTICATED_ANONYMOUSLY']
 	
 //   '/secure/**':    ['ROLE_ADMIN'],

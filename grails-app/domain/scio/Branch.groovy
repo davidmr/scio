@@ -4,14 +4,16 @@ class Branch {
 	
 	static belongsTo = [scio : Scio]
 	
-	static hasMany = [snapshots : Snapshot]
-	
 	String name
 	
 	Snapshot head
 	
+	public String defaultContent(){
+		head.content
+	}
+	
     static constraints = {
 		name(blank: false)
-		head(nullable: true)
+		head(nullable: false)
     }
 }

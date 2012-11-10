@@ -2,11 +2,14 @@ package scio
 
 class Snapshot {
 
-	static belongsTo = [ branch : Branch]
-
 	String content
 
-	static constraints = { content(blank: false) }
+	Snapshot previous
+
+	static constraints = {
+		content(blank: false)
+		previous(nullable: true)
+	}
 
 	static mapping = { content(type: 'text') }
 }
