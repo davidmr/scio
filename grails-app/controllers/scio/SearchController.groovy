@@ -2,7 +2,7 @@ package scio
 
 class SearchController {
 
-    def index() { }
+    def listScios() { }
 	
 	def searchByTag() {
 		if (params.tag) {
@@ -10,8 +10,16 @@ class SearchController {
 			def tagsList = tagsText.split(" ")
 			def scioList = findByTag(tagsList, 5)
 			
-			render(template: "listScios", model:[scioList: scioList])
+			render(template: "listScios", model: [scioList: scioList])
 		}
+	}
+	
+	def listByTag() {
+		if (params.tag) {
+			def scioList = findByTag([params.tag], 10)
+			render(view: "listScios", model: [tag: params.tag, scioList: scioList])
+		}
+		return
 	}
 	
 	def searchFeatured() {
