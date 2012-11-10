@@ -1,0 +1,42 @@
+/* CONTAINER */
+.scio-container-plus {
+	margin-top: 50px;
+}
+
+.scio-container-minus {
+	margin-top: -50px;
+}
+
+/* SCIO */
+.scio-content {
+	margin: 15px 0px;
+}
+
+/* FONTS */
+.scio-color-brown {
+	color: #543122;
+}
+
+.scio-color-green {
+	color: #225429;
+}
+
+.font-little {
+	font-size: 10px;
+}
+
+/* FOOTER */
+.footer {
+	border-top-color: #939062;
+	border-top-style: solid;
+	border-top-width: 1px;
+	margin: 15px;
+	padding: 5px;
+	text-align: center;
+}
+
+/* LINKS */
+.decorated {
+	color: #225429;
+	text-decoration: underline;
+}
