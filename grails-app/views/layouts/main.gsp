@@ -20,16 +20,24 @@
 				<div class="nav-collapse collapse">
 					<ul class="nav">
 						<li class="active">
-							<a class="brand" href="${createLink(uri: '/')}">Scio</a>
+							<a class="brand" href="${createLink(uri: '/')}">
+								<img src="${resource(dir: 'images/icons', file: 'owl.png')}" /> SCIO
+							</a>
 						</li>
 						<li class="active"><a href="#">About</a></li>
 					</ul>
-					<form class="navbar-form little pull-right">
-						<input class="span2" type="text" placeholder="Username"> <input
-							class="span2" type="password" placeholder="Password">
-						<button type="submit" class="btn btn-scio-light">Sign in</button>
-						<g:link controller="user" action="create" class="btn">Sign up</g:link>
-					</form>
+					<sec:ifNotLoggedIn>
+						<form action='${postUrl}' method='POST' id='loginForm' class='navbar-form little pull-right' autocomplete='off'>
+							<input name='j_username' id='username' class="span2" type="text" placeholder="Username"> 
+							<input name='j_password' id='password' class="span2" type="password" placeholder="Password">
+							
+							<button type="submit" class="btn btn-scio-light">Sign in</button>
+							<g:link controller="user" action="create" class="btn">Sign up</g:link>
+						</form>
+					</sec:ifNotLoggedIn>
+					<sec:ifLoggedIn>
+						<g:link controller="logout" class="btn pull-right">Log out</g:link>
+					</sec:ifLoggedIn>
 				</div>
 			</div>
 		</div>
