@@ -6,24 +6,46 @@ class ScioController {
 
 	def scioService
 
-	def show(Integer id){
-		if(id){
+	def show(Integer id) {
+		if(id) {
 			[scio : Scio.get(id) ]
 		}else{
 			render status: 404
 		}
 	}
-
-	def branch(){
+	
+	def searchByTag() {
+		if (params.tag) {
+			def tagsText = params.tag.replaceAll("[ ]+"," ")
+			def tagsList = tagsText.split(" ")
+			
+			def scioList = Scio.createCriteria().listDistinct() {
+				tags {
+					or {
+						tagsList.each { tag ->
+							eq('name', tag)
+						}
+					}
+				}
+			}
+			render(template: "list", model:[scioList: scioList])
+		}
+	}
+	
+	def searchFeatured() {
+		render(template: "list", model: [scioList : []])
 	}
 
-	def version(){
+	def branch() {
 	}
 
-	def create(){
+	def version() {
 	}
 
-	def docreate(CreateSCIOCommand scioCommand){
+	def create() {
+	}
+
+	def docreate(CreateSCIOCommand scioCommand) {
 		if(scioCommand.hasErrors()){
 			render(view: "create", model: [scioCommand : scioCommand])
 		}else{
@@ -33,14 +55,14 @@ class ScioController {
 		}
 	}
 	
-	def createbranch(){
+	def createbranch() {
 	}
 
-	def clone(){
+	def clone() {
 	}
 }
 
-class CreateSCIOCommand{
+class CreateSCIOCommand {
 
 	String title
 

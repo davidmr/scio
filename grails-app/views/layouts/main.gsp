@@ -3,18 +3,16 @@
 <!doctype html>
 <html lang="en" class="no-js">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Scio - Share knowledge</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="shortcut icon" href="${resource(dir: 'images', file: 'owl.png')}" type="image/x-icon">
-	<link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
-	<link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap.css')}" media="screen">
-	<link rel="stylesheet" href="${resource(dir: 'css', file: 'mybootstrap.css')}" type="text/css">
-	<link rel="stylesheet" href="${resource(dir: 'css', file: 'forms.css')}" type="text/css">
-	<g:layoutHead />
-	<r:layoutResources />
-</head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>Scio - Share knowledge</title>
+	
+		<r:require modules="core"/>
+		<link rel="shortcut icon" href="${resource(dir: 'images', file: 'owl.png')}" type="image/x-icon">
+
+		<g:layoutHead />
+		<r:layoutResources />
+	</head>
 <body>
 	<div class="navbar navbar-inverse navbar-fixed-top">
 		<div class="navbar-inner">
