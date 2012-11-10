@@ -9,20 +9,15 @@
 		<div class="row-fluid scio-container-minus">
 			<div class="span12">
 				<div class="hero-unit">
-					<div class="span4">
-						<img src="${resource(dir: 'images', file: 'owl.png')}" width="150px" />
-					</div>
-					<div>
-						<h1>
-							Scio
-						</h1>
-						<p>Scio is a place to share knowledge.</p>
-						
-						<form class="form-search">
-							<input type="text" placeholder="What do you want to know?" size="500">
-							<button type="submit" class="btn btn-scio">Search</button>
-						</form>
-					</div>
+					<h1>
+						Scio
+					</h1>
+					<p>Scio is a place to share knowledge.</p>
+					
+					<form class="form-search">
+						<input type="text" placeholder="What do you want to know?" size="500">
+						<button type="submit" class="btn btn-scio">Search</button>
+					</form>
 				</div>
 			</div>
 		</div>
