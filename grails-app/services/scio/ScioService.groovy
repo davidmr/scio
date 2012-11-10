@@ -6,7 +6,6 @@ class ScioService {
 
     def create(String title, String content, String tags, User owner) {
 		def tagSet = findTags(tags)
-		println tagSet*.name
 		Scio scio = new Scio(title: title, owner: owner).save(failOnError: true)
 		scio.init(content, tagSet)
 		scio.save(failOnError: true)

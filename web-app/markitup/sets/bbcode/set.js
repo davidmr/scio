@@ -21,19 +21,19 @@ mySettings = {
 		{separator:'---------------' },
 		{name:'Size', key:'S', openWith:'[size=[![Text size]!]]', closeWith:'[/size]',
 		dropMenu :[
-			{name:'Big', openWith:'[size=200]', closeWith:'[/size]' },
-			{name:'Normal', openWith:'[size=100]', closeWith:'[/size]' },
-			{name:'Small', openWith:'[size=50]', closeWith:'[/size]' }
+			{name:'Big', openWith:'[size=2]', closeWith:'[/size]' },
+			{name:'Normal', openWith:'[size=1]', closeWith:'[/size]' },
+			{name:'Small', openWith:'[size=0.5]', closeWith:'[/size]' }
 		]},
 		{separator:'---------------' },
 		{name:'Bulleted list', openWith:'[list]\n', closeWith:'\n[/list]'},
 		{name:'Numeric list', openWith:'[list=[![Starting number]!]]\n', closeWith:'\n[/list]'}, 
-		{name:'List item', openWith:'[*] '},
+		{name:'List item', openWith:'[item]', closeWith:'[/item]'},
 		{separator:'---------------' },
 		{name:'Quotes', openWith:'[quote]', closeWith:'[/quote]'},
-		{name:'Code', openWith:'[code]', closeWith:'[/code]'}, 
+		//{name:'Code', openWith:'[code]', closeWith:'[/code]'}, 
 		{separator:'---------------' },
-		{name:'Clean', className:"clean", replaceWith:function(markitup) { return markitup.selection.replace(/\[(.*?)\]/g, "") } },
-		{name:'Preview', className:"preview", call:'preview' }
+		{name:'Clean', className:"clean", replaceWith:function(markitup) { return markitup.selection.replace(/\[(.*?)\]/g, "") } }
+		//{name:'Preview', className:"preview", call:'preview' }
 	]
 }
