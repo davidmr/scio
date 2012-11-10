@@ -31,16 +31,35 @@ class ScioController {
 		if(scioCommand.hasErrors()){
 			render(view: "create", model: [scioCommand : scioCommand])
 		}else{
-			User owner = User.findByUsername(springSecurityService.principal.username)
+			User owner = loggedUser()
 			Scio scio = scioService.create(scioCommand.title, scioCommand.content, scioCommand.tags, owner)
 			redirect action: "show", params : [id : scio.id]
 		}
 	}
 
-	def createbranch() {
+	def createbranch(){
 	}
 
-	def clone() {
+	def clone(CloneSCIOCommand cloneCommand){
+		if(cloneCommand.hasErrors()){
+			render(view: "clone", model : [cloneCommand : cloneCommand])
+		}else{
+			return [scio : Scio.get(params.id as Integer)]
+		}
+	}
+
+	def doclone(CloneSCIOCommand cloneCommand){
+		if(cloneCommand.hasErrors()){
+			render(view: "clone", model : [cloneCommand : cloneCommand])
+		}else{
+			User owner = loggedUser()
+			Scio clonedScio = scioService.cloneScio(params.id as Integer, owner)
+			redirect action: "show", params : [id: clonedScio.id]
+		}
+	}
+
+	private User loggedUser(){
+		User.findByUsername(springSecurityService.principal.username)
 	}
 }
 
@@ -93,6 +112,22 @@ class VersionSCIOCommand {
 				return true
 			}else{
 				return "notfound"
+			}
+		})
+	}
+}
+
+class CloneSCIOCommand {
+
+	Integer id
+
+	static constraints = {
+		id(nullable: true, validator : {
+			Scio scio = Scio.get(it)
+			if(it && scio){
+				return true
+			}else{
+				return "nullable"
 			}
 		})
 	}

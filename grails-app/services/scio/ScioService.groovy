@@ -15,4 +15,15 @@ class ScioService {
 		def tagList = tags ? tags.replaceAll(/[ ]+/, ' ').trim().split(' ') : []
 		tagList.collect { Tag.findOrSaveByName(it) } as Set
 	}
+	
+	def cloneScio(Integer originalId, User owner){
+		Scio original = Scio.get(originalId)
+		Scio clone = new Scio(title: original.title, owner : owner).save(failOnError: true)
+		clone.tags = new HashSet(original.tags)
+		List clonedBranches = original.branches.collect {
+			new Branch(name: it.name, head : it.head)
+		}
+		clonedBranches.each { clone.addToBranches(it) }
+		clone.save(failOnError: true)
+	}
 }

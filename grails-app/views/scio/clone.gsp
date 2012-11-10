@@ -5,6 +5,15 @@
 <meta name="layout" content="main"/>
 </head>
 <body>
-	<h1>clone scio</h1>
+	<g:renderErrors/>
+	<g:if test="${scio != null}">
+	<div>Are you sure you want to clone &quot;${scio.title}&quot; by ${scio.owner.username}</div>
+	<g:form controller="scio" action="doclone">
+		<g:hiddenField name="id" value="${scio.id}" />
+		<input type="submit" class="btn" value="Clone"/>
+		<g:link controller="scio" action="show" params="${[id: scio.id]}">Cancel</g:link>
+	</g:form>
+	</g:if>
+	
 </body>
 </html>

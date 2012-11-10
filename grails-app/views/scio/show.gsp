@@ -15,7 +15,7 @@
 	<div class="scio-content">
 		<g:renderSnapshot snapshot="${scio.masterContent()}" />
 	</div>
-	<g:link controller="scio" action="clone">Improve this SCIO!</g:link>
+	<g:link controller="scio" action="clone" params="${[id: scio.id]}">Improve this SCIO!</g:link>
 	<h3>Branches</h3>
 	<g:each in="${scio.branches}">
 		<div class="branch"><g:link controller="scio" action="branch" params="${[id: scio.id, name: it.name]}">${it.name}</g:link></div>
