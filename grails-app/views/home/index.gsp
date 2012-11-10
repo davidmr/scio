@@ -34,11 +34,11 @@
 					<img src="${resource(dir: 'images/icons', file: 'star.png')}" /> Featured Scios
 				</h2>
 				<div id="contentSciosFeatured">
-					<g:include controller="scio" action="searchFeatured" />
+					<g:include controller="search" action="searchFeatured" />
 				</div>
 			</div>
 		</div>
 		
-		<g:hiddenField name="urlSearchByTag" id="urlSearchByTag" value="${createLink(controller: 'scio', action: 'searchByTag')}"/>
+		<g:hiddenField name="urlSearchByTag" id="urlSearchByTag" value="${createLink(controller: 'search', action: 'searchByTag')}"/>
 	</body>
 </html>

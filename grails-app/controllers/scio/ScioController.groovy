@@ -13,28 +13,6 @@ class ScioController {
 			render status: 404
 		}
 	}
-	
-	def searchByTag() {
-		if (params.tag) {
-			def tagsText = params.tag.replaceAll("[ ]+"," ")
-			def tagsList = tagsText.split(" ")
-			
-			def scioList = Scio.createCriteria().listDistinct() {
-				tags {
-					or {
-						tagsList.each { tag ->
-							eq('name', tag)
-						}
-					}
-				}
-			}
-			render(template: "list", model:[scioList: scioList])
-		}
-	}
-	
-	def searchFeatured() {
-		render(template: "list", model: [scioList : []])
-	}
 
 	def version(VersionSCIOCommand versionCommand){
 		if(versionCommand.hasErrors()){
@@ -58,7 +36,7 @@ class ScioController {
 			redirect action: "show", params : [id : scio.id]
 		}
 	}
-	
+
 	def createbranch() {
 	}
 
@@ -69,9 +47,9 @@ class ScioController {
 class CreateSCIOCommand {
 
 	String title
- 
+
 	String content
-	
+
 	String tags
 
 	static constraints = {
@@ -82,20 +60,21 @@ class CreateSCIOCommand {
 }
 
 class VersionSCIOCommand {
-	
+
 	Integer id
-	
+
 	String branch
-	
+
 	Integer snapshot
-	
+
 	static constraints = {
 		id(nullable: false)
 		branch(blank: false, validator : { val, obj ->
-			if(!obj.id){ //does not validate if id not specified
+			if(!obj.id){
+				//does not validate if id not specified
 				return true
 			}
-			
+
 			def scio = Scio.get(obj.id)
 			if(scio && scio.hasBranch(val)){
 				return true
@@ -104,10 +83,11 @@ class VersionSCIOCommand {
 			}
 		})
 		snapshot(nullable: false, validator : { val, obj ->
-			if(!obj.id || !obj.branch){ //does not validate if id or branch not specified
+			if(!obj.id || !obj.branch){
+				//does not validate if id or branch not specified
 				return true
 			}
-			
+
 			def scio = Scio.get(obj.id)
 			if(scio && scio.hasBranchAndSnapshot(obj.branch, val)){
 				return true
