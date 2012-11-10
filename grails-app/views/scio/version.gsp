@@ -17,14 +17,10 @@
 	<div class="scio-content">
 		<g:renderSnapshot snapshot="${snapshot}" />
 	</div>
-	<h3>Branches</h3>
-	<g:each in="${scio.branches}">
-		<div class="branch"><g:link controller="scio" action="branch" params="${[id: scio.id, name: it.name]}">${it.name}</g:link></div>
-	</g:each>
 	<h3>Recent history</h3>
 	<ul>
-	<g:each in="${scio.masterRecentHistory()}">
-		<li><g:link controller="scio" action="version" params="${[id: scio.id, branch: scio.masterBranch, snapshot: it.id]}"><g:snapshotDate snapshot="${it}"/></g:link>
+	<g:each in="${scio.recentHistory(params.branch)}">
+		<li><g:link controller="scio" action="version" params="${[id: scio.id, branch: params.branch, snapshot: it.id]}"><g:snapshotDate snapshot="${it}"/></g:link>
 	</g:each>
 	</ul>
 </body>

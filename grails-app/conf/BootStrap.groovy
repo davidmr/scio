@@ -46,13 +46,10 @@ class BootStrap {
 				
 				Snapshot snapshot1 = new Snapshot(content: "First [b]content[/b]").save(failOnError: true)
 				Snapshot snapshot2 = new Snapshot(content: bbcodeContent, previous: snapshot1).save(failOnError: true)
-				Snapshot snapshot3 = new Snapshot(content: "First content branch b").save(failOnError: true)
 				
 				Branch master = new Branch(name : "master", head: snapshot2)
-				Branch masterb = new Branch(name : "master_b", head: snapshot3)
 				
 				example1.addToBranches(master)
-				example1.addToBranches(masterb)
 				example1.tags = tags1
 				example1.save(failOnError: true)
 				
