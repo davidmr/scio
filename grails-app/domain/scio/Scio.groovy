@@ -20,9 +20,26 @@ class Scio {
 		this.tags = tags
 	}
 	
-	public String defaultContent(){
-		def branch = branches.find { it.name == MASTER_BRANCH}
+	def transient getMasterBranch(){
+		return MASTER_BRANCH
+	}
+
+	public Snapshot masterContent(){
+		defaultContentForBranch(MASTER_BRANCH)
+	}
+	
+	public List masterRecentHistory(){
+		recentHistory(MASTER_BRANCH)
+	}
+
+	public Snapshot defaultContentForBranch(String branchName){
+		def branch = branches.find { it.name == branchName }
 		branch.defaultContent()
+	}
+
+	public List recentHistory(String branchName){
+		def branch = branches.find { it.name == branchName }
+		branch.recentHistory()
 	}
 
 	static constraints = {

@@ -6,10 +6,14 @@ class Snapshot {
 
 	Snapshot previous
 
+	Date dateCreated
+
 	static constraints = {
 		content(blank: false)
 		previous(nullable: true)
 	}
 
-	static mapping = { content(type: 'text') }
+	static mapping = {
+		content(type: 'text')
+	}
 }

@@ -6,7 +6,12 @@ class ScioController {
 
 	def scioService
 
-	def show(){
+	def show(Integer id){
+		if(id){
+			[scio : Scio.get(id) ]
+		}else{
+			render status: 404
+		}
 	}
 
 	def branch(){
@@ -26,6 +31,9 @@ class ScioController {
 			Scio scio = scioService.create(scioCommand.title, scioCommand.content, scioCommand.tags, owner)
 			redirect action: "show", params : [id : scio.id]
 		}
+	}
+	
+	def createbranch(){
 	}
 
 	def clone(){

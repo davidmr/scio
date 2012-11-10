@@ -8,8 +8,18 @@ class Branch {
 	
 	Snapshot head
 	
-	public String defaultContent(){
-		head.content
+	public Snapshot defaultContent(){
+		head
+	}
+	
+	public List recentHistory(){
+		List history = []
+		Snapshot snapshot = head
+		while(snapshot != null && history.size() < 5){
+			history << snapshot
+			snapshot = head.previous
+		}
+		history
 	}
 	
     static constraints = {
