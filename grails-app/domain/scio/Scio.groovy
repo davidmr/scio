@@ -4,71 +4,58 @@ import java.util.concurrent.ConcurrentSkipListMap.HeadIndex;
 
 class Scio {
 
-	static hasMany = [branches : Branch, tags : Tag]
-
-	private static final String MASTER_BRANCH = "master"
+	static hasMany = [tags : Tag]
 
 	String title
 
 	User owner
 	
-	Integer recommendations
+	Integer recommendations = 0
+	
+	Snapshot head
 
 	public void init(String content, Set tags){
 		Snapshot snapshot = new Snapshot(content : content).save(failOnError: true)
-		Branch master = new Branch(name : MASTER_BRANCH, head : snapshot)
-		this.addToBranches(master)
-		master.save(failOnError: true)
+		this.head = snapshot
 		this.tags = tags
-		this.recommendations = 0 
 	}
 	
-	def transient getMasterBranch(){
-		return MASTER_BRANCH
-	}
-
-	public Snapshot masterContent(){
-		defaultContentForBranch(MASTER_BRANCH)
-	}
-	
-	public List masterRecentHistory(){
-		recentHistory(MASTER_BRANCH)
-	}
-
-	public Snapshot defaultContentForBranch(String branchName){
-		def branch = branches.find { it.name == branchName }
-		branch?.defaultContent()
-	}
-
-	public List recentHistory(String branchName){
-		def branch = branches.find { it.name == branchName }
-		branch?.recentHistory()
+	public Snapshot findSnapshot(Integer snapshotId){
+		Snapshot snapshot = head
+		while(snapshot != null){
+			if(snapshot.id == snapshotId){
+				return snapshot
+			}
+			snapshot = snapshot.previous
+		}
+		return null
 	}
 	
-	public boolean hasBranch(String branchName){
-		branches.find { it.name == branchName } != null
-	}
-	
-	public boolean hasBranchAndSnapshot(String branchName, Integer snapshot){
-		def branch = branches.find { it.name == branchName }
-		branch?.hasSnapshot(snapshot)
-	}
-	
-	public Snapshot findSnapshot(String branchName, Integer snapshot){
-		def branch = branches.find { it.name == branchName }
-		branch?.findSnapshot(snapshot)
+	public boolean hasSnapshot(Integer snapshotId){
+		findSnapshot(snapshotId) != null
 	}
 	
 	public boolean canEdit(User user){
 		owner.username == user?.username
 	}
 	
-	public void addSnapshotToBranch(String content, String branchName){
-		def branch = branches.find { it.name == branchName }
-		Snapshot head = branch.head
+	public void addSnapshot(String content){
 		Snapshot newSnapshot = new Snapshot(content: content, previous: head).save(failOnError: true)
-		branch.head = newSnapshot
-		branch.save(failOnError: true)
+		head = newSnapshot
+	}
+	
+	public List recentHistory(){
+		List history = []
+		Snapshot snapshot = head
+		while(snapshot != null && history.size() < 5){
+			history << snapshot
+			snapshot = snapshot.previous
+		}
+		history
+	}
+	
+	public Snapshot content(){
+		head
 	}
 	
 	public void addRecommendation() {

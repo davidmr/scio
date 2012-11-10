@@ -18,18 +18,15 @@ class ScioService {
 	
 	def cloneScio(Integer originalId, User owner){
 		Scio original = Scio.get(originalId)
-		Scio clone = new Scio(title: original.title, owner : owner).save(failOnError: true)
+		Scio clone = new Scio(title: original.title, owner : owner)
 		clone.tags = new HashSet(original.tags)
-		List clonedBranches = original.branches.collect {
-			new Branch(name: it.name, head : it.head)
-		}
-		clonedBranches.each { clone.addToBranches(it) }
+		clone.head = original.head
 		clone.save(failOnError: true)
 	}
 	
-	def editScio(Integer scioId, String content, String tags, String branch) {
+	def editScio(Integer scioId, String content, String tags) {
 		Scio scio = Scio.get(scioId)
-		scio.addSnapshotToBranch(content, branch)
+		scio.addSnapshot(content)
 		def tagSet = findTags(tags)
 		scio.tags = tagSet
 		scio.save(failOnError: true)

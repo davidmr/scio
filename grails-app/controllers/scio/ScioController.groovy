@@ -21,7 +21,7 @@ class ScioController {
 			render(view : "version", model : [versionCommand : versionCommand])
 		}else{
 			Scio scio = Scio.get(versionCommand.id)
-			Snapshot snapshot = scio.findSnapshot(versionCommand.branch, versionCommand.snapshot)
+			Snapshot snapshot = scio.findSnapshot(versionCommand.snapshot)
 			[scio: scio, snapshot: snapshot]
 		}
 	}
@@ -37,9 +37,6 @@ class ScioController {
 			Scio scio = scioService.create(scioCommand.title, scioCommand.content, scioCommand.tags, owner)
 			redirect action: "show", params : [id : scio.id]
 		}
-	}
-
-	def createbranch(){
 	}
 
 	def clone(CloneSCIOCommand cloneCommand){
@@ -64,7 +61,7 @@ class ScioController {
 		Scio scio = Scio.get(params.id as Integer)
 		User user = loggedUser()
 		if(scio.canEdit(user)){
-			return [editCommand : scioToEditCommand(scio, params.branch)]
+			return [editCommand : scioToEditCommand(scio)]
 		}else{
 			redirect controller: "login", action: "denied"
 		}
@@ -77,7 +74,7 @@ class ScioController {
 			User user = loggedUser()
 			Scio scio = Scio.get(editCommand.id)
 			if(scio.canEdit(user)){
-				scioService.editScio(editCommand.id, editCommand.content, editCommand.tags, editCommand.branch)
+				scioService.editScio(editCommand.id, editCommand.content, editCommand.tags)
 				redirect action: "show", params : [id: scio.id]
 			}else{
 				redirect controller: "login", action: "denied"
@@ -91,13 +88,12 @@ class ScioController {
 		}
 	}
 
-	private EditSCIOCommand scioToEditCommand(Scio scio, String branchName){
+	private EditSCIOCommand scioToEditCommand(Scio scio){
 		return new EditSCIOCommand(
 		id: scio.id,
 		title: scio.title,
-		content: scio.defaultContentForBranch(branchName).content,
-		tags: scio.tags*.name.join(' '),
-		branch : branchName )
+		content: scio.content().content,
+		tags: scio.tags*.name.join(' '))
 	}
 }
 
@@ -120,33 +116,18 @@ class VersionSCIOCommand {
 
 	Integer id
 
-	String branch
-
 	Integer snapshot
 
 	static constraints = {
 		id(nullable: false)
-		branch(blank: false, validator : { val, obj ->
+		snapshot(nullable: false, validator : { val, obj ->
 			if(!obj.id){
 				//does not validate if id not specified
 				return true
 			}
 
 			def scio = Scio.get(obj.id)
-			if(scio && scio.hasBranch(val)){
-				return true
-			}else{
-				return "notfound"
-			}
-		})
-		snapshot(nullable: false, validator : { val, obj ->
-			if(!obj.id || !obj.branch){
-				//does not validate if id or branch not specified
-				return true
-			}
-
-			def scio = Scio.get(obj.id)
-			if(scio && scio.hasBranchAndSnapshot(obj.branch, val)){
+			if(scio && scio.hasSnapshot(val)){
 				return true
 			}else{
 				return "notfound"
@@ -181,10 +162,7 @@ class EditSCIOCommand {
 
 	String tags
 
-	String branch
-
 	static constraints = {
-		title(blank: false)
 		id(validator : {
 			Scio scio = Scio.get(it)
 			if(it && scio){
@@ -193,20 +171,8 @@ class EditSCIOCommand {
 				return "nullable"
 			}
 		})
+		title(blank: false)
 		content(blank: false)
 		tags(nullable: true, blank: true)
-		branch(blank: false, validator : { val, obj ->
-			if(!obj.id){
-				//does not validate if id not specified
-				return true
-			}
-
-			def scio = Scio.get(obj.id)
-			if(scio && scio.hasBranch(val)){
-				return true
-			}else{
-				return "notfound"
-			}
-		})
 	}
 }

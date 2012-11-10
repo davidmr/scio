@@ -19,8 +19,8 @@
 	</div>
 	<h3>Recent history</h3>
 	<ul>
-	<g:each in="${scio.recentHistory(params.branch)}">
-		<li><g:link controller="scio" action="version" params="${[id: scio.id, branch: params.branch, snapshot: it.id]}"><g:snapshotDate snapshot="${it}"/></g:link>
+	<g:each in="${scio.recentHistory()}">
+		<li><g:link controller="scio" action="version" params="${[id: scio.id, snapshot: it.id]}"><g:snapshotDate snapshot="${it}"/></g:link>
 	</g:each>
 	</ul>
 </body>
