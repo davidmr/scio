@@ -1,0 +1,23 @@
+@CHARSET "UTF-8";
+
+.change {
+	background-color: #A7DBD8;
+}
+
+.insert {
+	background-color: #D1F2A5;
+}
+
+.delete {
+	background-color: #FFC48C;
+}
+
+.diff {
+	border-collapse: collapse;
+}
+.diff td,th{
+	border: 1px solid #ccc;
+}
+.diff th{
+	background-color: #eee;
+}

@@ -1,5 +1,7 @@
 package scio
 
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.LocatorEx.Snapshot;
+
 class ScioService {
 	
 	static transactional = true
@@ -21,6 +23,7 @@ class ScioService {
 		Scio clone = new Scio(title: original.title, owner : owner)
 		clone.tags = new HashSet(original.tags)
 		clone.head = original.head
+		clone.cloneOf = original
 		clone.save(failOnError: true)
 	}
 	
@@ -30,5 +33,16 @@ class ScioService {
 		def tagSet = findTags(tags)
 		scio.tags = tagSet
 		scio.save(failOnError: true)
+	}
+	
+	def acceptMergeRequest(def mergeId){
+		MergeRequest merge = MergeRequest.get(mergeId)
+		
+		Scio original = merge.destination
+		original.addSnapshot(merge.source.content)
+		
+		merge.accept()
+		merge.save(failOnError: true)
+		
 	}
 }

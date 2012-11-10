@@ -24,4 +24,8 @@ modules = {
 		dependsOn 'jquery'
 		resource url : 'js/scio.js'
 	}
+	
+	diff {
+		resource url: 'css/diff.css'
+	}
 }
