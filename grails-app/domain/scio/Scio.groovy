@@ -11,6 +11,8 @@ class Scio {
 	String title
 
 	User owner
+	
+	Integer recommendations
 
 	public void init(String content, Set tags){
 		Snapshot snapshot = new Snapshot(content : content).save(failOnError: true)
@@ -18,6 +20,7 @@ class Scio {
 		this.addToBranches(master)
 		master.save(failOnError: true)
 		this.tags = tags
+		this.recommendations = 0 
 	}
 	
 	def transient getMasterBranch(){
@@ -66,6 +69,10 @@ class Scio {
 		Snapshot newSnapshot = new Snapshot(content: content, previous: head).save(failOnError: true)
 		branch.head = newSnapshot
 		branch.save(failOnError: true)
+	}
+	
+	public void addRecommendation() {
+		recommendations++
 	}
 
 	static constraints = {

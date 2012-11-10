@@ -9,7 +9,7 @@
 	<h2>By: ${scio.owner.username}</h2>
 	<div class="tags">
 		<g:each in="${scio.tags}">
-			<span class="tag"><g:link controller="search" params="${[id: it.name]}">${it.name}</g:link></span>
+			<span class="tag"><g:link controller="search" action="listByTag" params="${[tag: it.name]}">${it.name}</g:link></span>
 		</g:each>
 	</div>
 	<div class="scio-content">
