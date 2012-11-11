@@ -15,7 +15,7 @@ class SearchController {
 			def tagsList = tagsText.split(" ")
 			scioList = findByTag(tagsList, 5)
 		}
-		render(template: "listScios", model: [scioList: scioList])
+		render(template: "listScios", model: [scioList: scioList, tag: params.criteria])
 	}
 	
 	@Secured(['ROLE_USER'])
@@ -27,7 +27,7 @@ class SearchController {
 			def tagsList = tagsText.split(" ")
 			scioList = findMineByTag(user, tagsList, 5)
 		}
-		render(template: "listScios", model: [scioList: scioList])
+		render(template: "listScios", model: [scioList: scioList, tag: params.criteria])
 	}
 	
 	def searchMineByMonth() {
