@@ -1,5 +1,7 @@
 <ul class="nav nav-list">
-	<li><a href="#">December</a></li>
-	<li><a href="#">November</a></li>
-	<li><a href="#">October</a></li>
+	<g:each in="${monthMap}" var="month" >
+		<li><a href="#" data-month="${month.key}" id="linkMySciosByMonth">${month.key}</a></li>
+	</g:each>
 </ul>
+
+<g:hiddenField name="urlSearchByMonth" id="urlSearchByMonth" value="${createLink(controller: 'search', action: 'searchMineByMonth')}"/>
