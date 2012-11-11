@@ -49,7 +49,8 @@
 		</div>
 	</div>
 	
-	<div class="container scio-container-plus">
+	<div class="container scio-container-plus main">
+	
 		<g:if test="${flash.message}">
 			<div class="alert-info">${flash.message}</div>
 		</g:if>

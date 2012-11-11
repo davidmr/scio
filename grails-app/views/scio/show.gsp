@@ -8,7 +8,7 @@
 		<h2 class="scio-color-green">${scio.title}</h2>
 
 		<h4 class="scio-color-brown">
-			<img src="${resource(dir: 'images/icons', file: 'user.png')}" /> ${scio.owner.username}
+			<img src="${resource(dir: 'images/icons', file: 'user.png')}" /> ${scio.owner.username} <g:if test="${scio.clone}">cloned from ${scio.cloneOf.owner.username}</g:if>
 			<img src="${resource(dir: 'images/icons', file: 'like.png')}" /> ${scio.recommendations}
 			<img src="${resource(dir: 'images/icons', file: 'calendar.png')}" /> <g:snapshotDate snapshot="${scio?.content()}" />
 		</h4>
@@ -20,7 +20,7 @@
 				</span>
 			</g:each>
 		</div>
-	</div>
+	
 	
 	<div class="mywell">
 		<g:renderSnapshot snapshot="${scio.content()}" />
@@ -36,12 +36,16 @@
 		</g:if>
 	</div>
 	
-	<h3>Recent history</h3>
+	<div class="history">
+	<h4 class="scio-color-green">Recent history</h4>
 	<ul>
 	<g:each in="${scio.recentHistory()}">
 		<li><g:link controller="scio" action="version" params="${[id: scio.id, snapshot: it.id]}"><g:snapshotDate snapshot="${it}"/></g:link>
 	</g:each>
 	</ul>
+	</div>
+	
+	</div>
 	
 </body>
 </html>

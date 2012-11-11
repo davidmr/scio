@@ -118,7 +118,7 @@ class ScioController {
 		User owner = loggedUser()
 		def merge = new MergeRequest(destination: scio.cloneOf, source: scio.head, owner: owner)
 		if(merge.save()){
-			flash.message = "A merge request has been seend to ${scio.cloneOf.owner.username}"
+			flash.message = "A merge request has been send to ${scio.cloneOf.owner.username}"
 			redirect action: "show", params : [id : id]
 		}else{
 			render(view: "afteredit", model: [merge : merge, scio : scio])
