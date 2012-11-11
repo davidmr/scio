@@ -1,5 +1,8 @@
 package scio
 
+import org.htmlcleaner.HtmlCleaner
+import org.htmlcleaner.TagNode
+
 class ScioTagLib {
 	
 	def renderBBCodeService
@@ -14,7 +17,15 @@ class ScioTagLib {
 	
 	def renderBBCode = { attrs ->
 		out << renderBBCodeService.render(attrs.text ?: "")
-		
+	}
+	
+	def renderSnippet = { attrs ->
+		String html = renderBBCodeService.render(attrs.snapshot.content)
+		HtmlCleaner cleaner = new HtmlCleaner()
+		TagNode tagNode = cleaner.clean(html)
+		String plain = tagNode.text
+		int last = Math.min(plain.length(), 100)
+		out << plain.substring(0, last) + "[...]"
 	}
 	
 }

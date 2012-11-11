@@ -36,6 +36,7 @@ grails.project.dependency.resolution = {
 
         runtime 'mysql:mysql-connector-java:5.1.20'
 		runtime 'com.googlecode.java-diff-utils:diffutils:1.2.1'
+		runtime 'net.sourceforge.htmlcleaner:htmlcleaner:2.2'
     }
 
     plugins {

@@ -7,7 +7,7 @@
 <body>
 	<g:if test="${scio != null}">
 		<div class="dialog">
-			<div>To improve this SCIO you first must clone it and then edit it. <br />Are you sure you want to clone &quot;${scio.title}&quot; by ${scio.owner.username}?</div>
+			<div>To improve this Scio you first must clone it and then edit it. <br />Are you sure you want to clone &quot;${scio.title}&quot; by ${scio.owner.username}?</div>
 			<g:form controller="scio" action="doclone">
 				<g:hiddenField name="id" value="${scio.id}" />
 				<input type="submit" class="btn" value="Clone"/>

@@ -99,18 +99,8 @@ grails.plugins.springsecurity.successHandler.defaultTargetUrl = '/home/user'
 grails.plugins.springsecurity.successHandler.alwaysUseDefault = true
 
 
-//grails.plugins.springsecurity.interceptUrlMap = [
-//	'/scio/create' : ['ROLE_USER'],
-//	'/scio/clone/**' : ['ROLE_USER'],
-//	'/home/user' : ['ROLE_USER'],
-//	'/**': ['IS_AUTHENTICATED_ANONYMOUSLY']
-//	
-//   '/secure/**':    ['ROLE_ADMIN'],
-//   '/finance/**':   ['ROLE_FINANCE', 'IS_AUTHENTICATED_FULLY'],
-//   '/js/**':        ['IS_AUTHENTICATED_ANONYMOUSLY'],
-//   '/css/**':       ['IS_AUTHENTICATED_ANONYMOUSLY'],
-//   '/images/**':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
-//   '/*':            ['IS_AUTHENTICATED_ANONYMOUSLY'],
-//   '/login/**':     ['IS_AUTHENTICATED_ANONYMOUSLY'],
-//   '/logout/**':    ['IS_AUTHENTICATED_ANONYMOUSLY']
-//]
+grails.cache.config = {
+	cache {
+	   name 'bbcode'
+	}
+ }

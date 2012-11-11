@@ -8,15 +8,15 @@
 	</head>
 	<body>
 		<div class="container">
-			<h2 class="scio-color-green">Write a new SCIO</h2>
+			<h2 class="scio-color-green">Write a new Scio</h2>
 		  	<g:form controller="scio" action="docreate" method="POST" autocomplete="off">
 		  		<label for="title" class="${hasErrors(bean: scioCommand, field: 'title', 'error')}">Title</label>
 		  		
-		  		<g:textField name="title" value="${scioCommand?.title}" placeholder="SCIO title" required="true" />
+		  		<g:textField name="title" value="${scioCommand?.title}" placeholder="Scio title" required="true" />
 		  		
 		  		<g:textArea name="content" id="scio-edit" required="true">${scioCommand?.content}</g:textArea>
 		  		
-		  		<g:textField name="tagsSearch" id="tags" data-provide="typeahead" placeholder="Your SCIO tags"/> 
+		  		<g:textField name="tagsSearch" id="tags" data-provide="typeahead" placeholder="Your Scio tags"/> 
 		  		
 		  		<span id="tagsFeedback">${scioCommand?.tags}</span>
 		  		
@@ -25,7 +25,7 @@
 				<g:hiddenField name="findTagsUrl" id="findTagsUrl" value="${createLink(action: 'search', controller: 'tag')}"/>
 				
 		  		<br />
-		  		<input type="submit" class="btn" value="Create SCIO"/>
+		  		<input type="submit" class="btn" value="Create Scio"/>
 		  	</g:form>
 		</div>
 	</body>

@@ -8,7 +8,7 @@
 </head>
 <body>
 <h2 class="scio-color-green">${merge.owner.username} is asking to merge.</h2>
-<h3 class="scio-color-brown">Here is the difference with your SCIO</h3>
+<h3 class="scio-color-brown">Here is the difference with your Scio</h3>
 <table class="diff">
 	<tr><th></th><th>Original</th><th>Revised</th></tr>
 	<g:each in="${diffRows}" var="diff">

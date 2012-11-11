@@ -37,7 +37,7 @@
 	</div>
 	
 	<div class="pull-right">
-		<g:link controller="scio" action="clone" params="${[id: scio.id]}" class="btn btn-scio">Improve this SCIO!</g:link>
+		<g:link controller="scio" action="clone" params="${[id: scio.id]}" class="btn btn-scio">Improve this Scio!</g:link>
 		<g:if test="${canEdit}">
 			<g:link controller="scio" action="edit" params="${[id: scio.id]}" class="btn btn-scio" >Edit</g:link>
 		</g:if>

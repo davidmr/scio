@@ -48,13 +48,13 @@
 			if (data) {
 				elemContentShow.empty();
 				elemContentShow.append(data);
-				elemPanelShow.show();
-				elemPanelError.hide();
+				elemPanelShow.show("slow");
+				elemPanelError.hide("slow");
 			} else {
-				elemPanelError.show();
-				elemPanelShow.hide()
+				elemPanelError.show("slow");
+				elemPanelShow.hide("slow");
 			}
-			elemPanelHide.hide();
+			elemPanelHide.hide("slow");
 		});
 	}
 })(jQuery);

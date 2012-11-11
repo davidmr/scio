@@ -30,6 +30,7 @@ class SearchController {
 		render(template: "listScios", model: [scioList: scioList, tag: params.criteria])
 	}
 	
+	@Secured(['ROLE_USER'])
 	def searchMineByMonth() {
 		def scioList = []
 		if (params.criteria) {

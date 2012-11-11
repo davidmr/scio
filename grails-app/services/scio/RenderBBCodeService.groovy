@@ -1,5 +1,7 @@
 package scio
 
+import grails.plugin.cache.Cacheable
+
 //Based on http://blog.hydronitrogen.com/663/groovygrails-bbcode-markup-tutorial/
 class RenderBBCodeService {
 
@@ -17,6 +19,7 @@ class RenderBBCodeService {
 		'[break][/break]' : "<br />"
 	]
 
+	@Cacheable('bbcode')
 	def render(String bbcode) {
 		def result = bbcode.replaceAll(/</,"&lt;")
 		result = result.replaceAll(/>/, "&gt;")

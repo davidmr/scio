@@ -126,3 +126,12 @@
 	text-align: justify;
 	font-size: 14px;
 }
+.snippet{
+	color: #888;
+}
+.scio{
+	border: 1px solid #eee;
+	border-radius: 5px;
+	margin-bottom: 1em;
+	padding: 0 5px 0 5px;
+}

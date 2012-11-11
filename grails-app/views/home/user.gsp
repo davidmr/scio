@@ -31,7 +31,7 @@
 					<div id="panelSciosByTag" style="display: none;">			
 						<h3 id="titleSciosByTag" class="scio-color-green">
 							<img src="${resource(dir: 'images/icons', file: 'star.png')}" /> Scios
-							<g:link controller="scio" action="create" class="btn btn-scio pull-right">Create SCIO</g:link>
+							<g:link controller="scio" action="create" class="btn btn-scio pull-right">Create Scio</g:link>
 						</h3>
 						<div id="contentSciosByTag">
 						</div>
@@ -49,7 +49,7 @@
 					<div id="panelSciosMine">
 						<h3 id="titleSciosMine" class="scio-color-green">
 							<img src="${resource(dir: 'images/icons', file: 'star.png')}" /> My Last Scios
-							<g:link controller="scio" action="create" class="btn btn-scio pull-right">Create SCIO</g:link>
+							<g:link controller="scio" action="create" class="btn btn-scio pull-right">Create Scio</g:link>
 						</h3>
 						<div id="contentSciosMine">
 							<g:include controller="search" action="searchMine" />

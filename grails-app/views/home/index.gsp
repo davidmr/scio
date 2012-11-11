@@ -11,7 +11,7 @@
 					<h1>
 						Scio
 					</h1>
-					<p>Scio is a place to share knowledge.</p>
+					<p>Scio is a place to share knowledge</p>
 					
 					<form class="form-search">
 						<input type="text" placeholder="What do you want to know?" id="textScioByTag" />
@@ -25,7 +25,7 @@
 			<div class="mywell well-center">
 				<div id="panelSciosByTag" style="display: none;">			
 					<h2 id="titleSciosByTag" class="scio-color-green">
-						<img src="${resource(dir: 'images/icons', file: 'star.png')}" /> Scios
+						<img src="${resource(dir: 'images/icons', file: 'star.png')}" /> Scio Search Result
 					</h2>
 					<div id="contentSciosByTag">
 					</div>
@@ -33,7 +33,7 @@
 				
 				<div id="panelNoScios" style="display: none;">
 					<h2 id="titleNoScios" class="scio-color-green">
-						<img src="${resource(dir: 'images/icons', file: 'star.png')}" /> Scios
+						<img src="${resource(dir: 'images/icons', file: 'star.png')}" /> Scio Search Result
 					</h2>
 					<div id="contentNoScios">
 						Sorry. We don't find a Scio match the search.

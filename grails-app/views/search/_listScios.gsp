@@ -1,7 +1,11 @@
 <g:each in="${scioList}" var="scio">
+	<div class="scio">
 	<g:link controller="scio" action="show" id="${scio.id}" class="decorated">
 		<h4 class="scio-color-green">${scio.title}</h4>
 	</g:link>
+	<div class="snippet">
+		<g:renderSnippet snapshot="${scio.content()}"/>
+	</div>
 	<div class="tags">
 		<g:each in="${scio.tags}">
 			<g:link controller="search" action="listByTag" params="${[tag: it.name]}" class="link-tag">
@@ -24,4 +28,5 @@
 		<img src="${resource(dir: 'images/icons', file: 'like.png')}" />
 		<span class="font-little">${scio?.recommendations}</span>
 	</p>
+	</div>
 </g:each>

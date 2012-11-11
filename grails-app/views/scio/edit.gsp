@@ -11,7 +11,7 @@
 	  	<g:form controller="scio" action="doedit" method="POST" autocomplete="off">
 	  		<g:textArea name="content" id="scio-edit">${editCommand.content}</g:textArea>
 	  		
-	  		<g:textField name="tagsSearch" id="tags" data-provide="typeahead" placeholder="Add new SCIO tags"/>
+	  		<g:textField name="tagsSearch" id="tags" data-provide="typeahead" placeholder="Add new Scio tags"/>
 	  		 
 	  		<span id="tagsFeedback">${editCommand.tags}</span>
 	  		
@@ -23,7 +23,7 @@
 	  		
 	  		<br />
 	  		
-	  		<input type="submit" value="Edit SCIO" class="btn btn-scio"/>
+	  		<input type="submit" value="Edit Scio" class="btn btn-scio"/>
 	  	</g:form>
 	</div>
 </body>

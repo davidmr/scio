@@ -24,7 +24,7 @@
 			</p>
 			<h3>Authors</h3>
 			<p>
-				SCIO is built by Yury Ni&ntilde;o and David Monta&ntilde;o.
+				SCIO is built by David Monta&ntilde;o and Yury Ni&ntilde;o.
 			</p>
 			
 			<h4>Licenses</h4>
