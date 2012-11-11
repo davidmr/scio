@@ -13,7 +13,7 @@
   		<span id="tagsFeedback">${editCommand.tags}</span>
   		<g:hiddenField name="id" value="${params.id}"/>
   		<g:hiddenField name="tags" value="${editCommand.tags}" id="tagsField"/>
-  		<g:hiddenField name="findTagsUrl" value="${createLink(controller: 'tag', action: 'search')}"/>
+  		<g:hiddenField name="findTagsUrl" id="findTagsUrl" value="${createLink(action: 'search', controller: 'tag')}"/>
   		<g:hiddenField name="title" value="${editCommand.title}"/>
   		<g:hiddenField name="bbcodepreview" id="bbcodepreview" value="${createLink(action: 'preview', controller: 'scio')}" />
   		<br />

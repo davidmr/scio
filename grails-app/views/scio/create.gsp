@@ -15,6 +15,7 @@
   		<span id="tagsFeedback">${scioCommand?.tags}</span>
   		<g:hiddenField name="tags" value="${scioCommand?.tags}" id="tagsField"/>
   		<g:hiddenField name="bbcodepreview" id="bbcodepreview" value="${createLink(action: 'preview', controller: 'scio')}" />
+  		<g:hiddenField name="findTagsUrl" id="findTagsUrl" value="${createLink(action: 'search', controller: 'tag')}"/>
   		<br />
   		<input type="submit" value="Create SCIO"/>
   	</g:form>
