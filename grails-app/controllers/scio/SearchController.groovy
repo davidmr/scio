@@ -9,35 +9,34 @@ class SearchController {
     def listScios() { }
 	
 	def searchByTag() {
-		if (params.tag) {
-			def tagsText = params.tag.replaceAll("[ ]+"," ")
+		def scioList = []
+		if (params.criteria) {
+			def tagsText = params.criteria.replaceAll("[ ]+"," ")
 			def tagsList = tagsText.split(" ")
-			def scioList = findByTag(tagsList, 5)
-			
-			render(template: "listScios", model: [scioList: scioList])
+			scioList = findByTag(tagsList, 5)
 		}
+		render(template: "listScios", model: [scioList: scioList])
 	}
 	
 	@Secured(['ROLE_USER'])
 	def searchMineByTag() {
-		if (params.tag) {
+		def scioList = []
+		if (params.criteria) {
 			def user = loggedUser()
-			def tagsText = params.tag.replaceAll("[ ]+"," ")
+			def tagsText = params.criteria.replaceAll("[ ]+"," ")
 			def tagsList = tagsText.split(" ")
-			def scioList = findMineByTag(user, tagsList, 5)
-			
-			render(template: "listScios", model: [scioList: scioList])
+			scioList = findMineByTag(user, tagsList, 5)
 		}
+		render(template: "listScios", model: [scioList: scioList])
 	}
 	
-	def listByTag() {
-		if (params.tag) {
-			def scioList = findByTag([params.tag], 10)
-			User user = loggedUser()
-			def followingTag = user ? user.followsTag(params.tag) : false
-			render(view: "listScios", model: [tag: params.tag, scioList: scioList, followingTag : followingTag])
+	def searchMineByMonth() {
+		def scioList = []
+		if (params.criteria) {
+			def user = loggedUser()
+			scioList = findMineByMonth(user, params.criteria, 5)
 		}
-		return
+		render(template: "listScios", model: [scioList: scioList])
 	}
 	
 	def searchFeatured() {
@@ -55,8 +54,30 @@ class SearchController {
 	@Secured(['ROLE_USER'])
 	def searchMonthsMine() {
 		def user = loggedUser()
-		def monthList = []
-		render(template: "listMonths", model: [scioList : monthList])
+		def monthList = Scio.withCriteria {
+			head {
+				projections {
+					groupProperty("monthCreated")
+					count("id")
+				}
+			}
+		}
+		
+		def monthMap = monthList.inject([:]) { map, month ->
+			map[month[0]] = month[1]; map
+		}
+		
+		render(template: "listMonths", model: [monthMap : monthMap])
+	}
+	
+	def listByTag() {
+		def scioList = []
+		if (params.criteria) {
+			scioList = findByTag([params.criteria], 10)
+			User user = loggedUser()
+			def followingTag = user ? user.followsTag(params.criteria) : false
+		}
+		render(view: "listScios", model: [tag: params.criteria, scioList: scioList, followingTag : followingTag])
 	}
 	
 	private List findByTag(tagsList, max) {
@@ -64,7 +85,7 @@ class SearchController {
 			tags {
 				or {
 					tagsList.each { tag ->
-						eq('name', tag)
+						like('name', tag)
 					}
 				}
 			}
@@ -80,9 +101,22 @@ class SearchController {
 				tags {
 					or {
 						tagsList.each { tag ->
-							eq('name', tag)
+							like('name', tag)
 						}
 					}
+				}
+			}
+			maxResults(max)
+		}
+		return scioList
+	}
+	
+	private List findMineByMonth(user, month, max) {
+		def scioList = Scio.createCriteria().listDistinct() {
+			and {
+				eq('owner', user)
+				head {
+					eq('monthCreated', month)
 				}
 			}
 			maxResults(max)
