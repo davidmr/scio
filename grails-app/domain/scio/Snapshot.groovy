@@ -7,6 +7,10 @@ class Snapshot {
 	Snapshot previous
 
 	Date dateCreated
+	
+	public List contentLines(){
+		content.readLines()
+	}
 
 	static constraints = {
 		content(blank: false)

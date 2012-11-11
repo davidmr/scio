@@ -25,4 +25,7 @@ modules = {
 		resource url : 'js/editScio.js'
 	}
 	
+	diff {
+		resource url: 'css/diff.css'
+	}
 }

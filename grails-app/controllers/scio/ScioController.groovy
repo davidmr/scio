@@ -6,14 +6,10 @@ class ScioController {
 
 	def scioService
 
-	def show(Integer id) {
-		if(id) {
-			User user = loggedUser()
-			Scio scio = Scio.get(id)
-			[scio : scio, canEdit: scio.canEdit(user)]
-		}else{
-			render status: 404
-		}
+	def show(String id) {
+		Scio scio = safeGetScio(id)
+		User user = loggedUser()
+		[scio : scio, canEdit: scio.canEdit(user)]
 	}
 
 	def version(VersionSCIOCommand versionCommand){
@@ -57,8 +53,8 @@ class ScioController {
 		}
 	}
 
-	def edit(){
-		Scio scio = Scio.get(params.id as Integer)
+	def edit(String id){
+		Scio scio = safeGetScio(id)
 		User user = loggedUser()
 		if(scio.canEdit(user)){
 			return [editCommand : scioToEditCommand(scio)]
@@ -75,13 +71,17 @@ class ScioController {
 			Scio scio = Scio.get(editCommand.id)
 			if(scio.canEdit(user)){
 				scioService.editScio(editCommand.id, editCommand.content, editCommand.tags)
-				redirect action: "show", params : [id: scio.id]
+				if(scio.isClone()){
+					redirect action: "afteredit", params : [id: scio.id]
+				}else{
+					redirect action: "show", params : [id: scio.id]
+				}
 			}else{
 				redirect controller: "login", action: "denied"
 			}
 		}
 	}
-	
+
 	def recommend() {
 		if(params.id) {
 			Scio scio = Scio.get(params.id as Long)
@@ -92,6 +92,26 @@ class ScioController {
 			}
 		}
 		return
+	}
+
+	def afteredit(String id){
+		[scio : safeGetScio(id)]
+	}
+
+	def toshow(String id){
+		redirect action: "show", params : [id : id]
+	}
+
+	def requestmerge(String id){
+		Scio scio = safeGetScio(id)
+		User owner = loggedUser()
+		def merge = new MergeRequest(destination: scio.cloneOf, source: scio.head, owner: owner)
+		if(merge.save()){
+			flash.message = "A merge request has been seend to ${scio.cloneOf.owner.username}"
+			redirect action: "show", params : [id : id]
+		}else{
+			render(view: "afteredit", model: [merge : merge, scio : scio])
+		}
 	}
 
 	private User loggedUser(){
@@ -107,7 +127,21 @@ class ScioController {
 		content: scio.content().content,
 		tags: scio.tags*.name.join(' '))
 	}
-	
+
+	private Scio safeGetScio(String id){
+		if(id){
+			try{
+				Integer scioId = id as Integer
+				Scio scio = Scio.get(scioId)
+				if(scio != null){
+					return scio
+				}
+			}catch(NumberFormatException e){
+
+			}
+		}
+		throw new SCIONotFoundException()
+	}
 }
 
 class CreateSCIOCommand {

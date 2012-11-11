@@ -1,6 +1,0 @@
-package scio
-
-class PullRequest {
-	
-
-}

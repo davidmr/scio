@@ -13,6 +13,8 @@ class Scio {
 	Integer recommendations = 0
 	
 	Snapshot head
+	
+	Scio cloneOf
 
 	public void init(String content, Set tags){
 		Snapshot snapshot = new Snapshot(content : content).save(failOnError: true)
@@ -58,8 +60,16 @@ class Scio {
 		head
 	}
 	
+	public List contentLines(){
+		head.contentLines()
+	}
+	
 	public void addRecommendation() {
 		recommendations++
+	}
+	
+	public boolean isClone(){
+		cloneOf != null
 	}
 
 	static constraints = {
