@@ -1,5 +1,7 @@
 package scio
 
+import grails.plugins.springsecurity.Secured
+
 class SearchController {
 	
 	def springSecurityService
@@ -29,6 +31,7 @@ class SearchController {
 		render(template: "listScios", model: [scioList : scioList])
 	}
 	
+	@Secured(['ROLE_USER'])
 	def follow(String tag){
 		if(tag){
 			Tag tagObj = Tag.findByName(tag)

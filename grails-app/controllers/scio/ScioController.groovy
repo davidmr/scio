@@ -1,5 +1,7 @@
 package scio
 
+import grails.plugins.springsecurity.Secured;
+
 class ScioController {
 
 	def springSecurityService
@@ -22,9 +24,11 @@ class ScioController {
 		}
 	}
 
+	@Secured(['ROLE_USER'])
 	def create() {
 	}
 
+	@Secured(['ROLE_USER'])
 	def docreate(CreateSCIOCommand scioCommand) {
 		if(scioCommand.hasErrors()){
 			render(view: "create", model: [scioCommand : scioCommand])
@@ -35,6 +39,7 @@ class ScioController {
 		}
 	}
 
+	@Secured(['ROLE_USER'])
 	def clone(CloneSCIOCommand cloneCommand){
 		if(cloneCommand.hasErrors()){
 			render(view: "clone", model : [cloneCommand : cloneCommand])
@@ -43,6 +48,7 @@ class ScioController {
 		}
 	}
 
+	@Secured(['ROLE_USER'])
 	def doclone(CloneSCIOCommand cloneCommand){
 		if(cloneCommand.hasErrors()){
 			render(view: "clone", model : [cloneCommand : cloneCommand])
@@ -53,6 +59,7 @@ class ScioController {
 		}
 	}
 
+	@Secured(['ROLE_USER'])
 	def edit(String id){
 		Scio scio = safeGetScio(id)
 		User user = loggedUser()
@@ -63,6 +70,7 @@ class ScioController {
 		}
 	}
 
+	@Secured(['ROLE_USER'])
 	def doedit(EditSCIOCommand editCommand){
 		if(editCommand.hasErrors()){
 			render(view: "edit", model : [editCommand : editCommand])
@@ -94,14 +102,17 @@ class ScioController {
 		return
 	}
 
+	@Secured(['ROLE_USER'])
 	def afteredit(String id){
 		[scio : safeGetScio(id)]
 	}
 
+	@Secured(['ROLE_USER'])
 	def toshow(String id){
 		redirect action: "show", params : [id : id]
 	}
 
+	@Secured(['ROLE_USER'])
 	def requestmerge(String id){
 		Scio scio = safeGetScio(id)
 		User owner = loggedUser()

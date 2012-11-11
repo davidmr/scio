@@ -1,5 +1,6 @@
 package scio
 
+import grails.plugins.springsecurity.Secured
 import difflib.DiffRow
 import difflib.DiffRowGenerator
 
@@ -10,6 +11,7 @@ class MergerequestController {
 	def index() {
 	}
 
+	@Secured(['ROLE_USER'])
 	def resolve(String id){
 		MergeRequest merge = safeGetMerge(id)
 
@@ -27,6 +29,7 @@ class MergerequestController {
 		[merge : merge, diffRows: diffRows]
 	}
 	
+	@Secured(['ROLE_USER'])
 	def accept(String id){
 		MergeRequest merge = safeGetMerge(id)
 		scioService.acceptMergeRequest(merge.id)
@@ -34,6 +37,7 @@ class MergerequestController {
 		redirect controller: "scio", action: "show", params: [id: merge.destination.id]
 	}
 	
+	@Secured(['ROLE_USER'])
 	def reject(String id){
 		MergeRequest merge = safeGetMerge(id)
 		merge.reject()

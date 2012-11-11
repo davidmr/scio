@@ -1,5 +1,7 @@
 package scio
 
+import grails.plugins.springsecurity.Secured
+
 class HomeController {
 	
 	def springSecurityService
@@ -8,6 +10,7 @@ class HomeController {
 		
 	}
 	
+	@Secured(['ROLE_USER'])
 	def user(){
 		def username = springSecurityService.principal.username
 		def user = User.findByUsername(username)
