@@ -36,6 +36,7 @@
 				<li><a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a></li>
 				<li><a href="http://jquery.com/">jQuery</a>
 				<li><a href="http://grails.org/plugin/spring-security-core">Grails Spring Security Plugin</a></li>
+				<li><a href="http://htmlcleaner.sourceforge.net/">HTMLCleaner</a></li>
 			</ul>
 		</div>
 	</div>

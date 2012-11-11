@@ -8,7 +8,7 @@
 <body>
 	<div class="container">
 		<h2 class="scio-color-green">Edit &quot;${editCommand.title}&quot;</h2>
-	  	<g:form controller="scio" action="doedit" method="POST" autocomplete="off">
+	  	<g:form controller="scio" method="POST" autocomplete="off">
 	  		<g:textArea name="content" id="scio-edit">${editCommand.content}</g:textArea>
 	  		
 	  		<g:textField name="tagsSearch" id="tags" data-provide="typeahead" placeholder="Add new Scio tags"/>
@@ -22,8 +22,8 @@
 	  		<g:hiddenField name="bbcodepreview" id="bbcodepreview" value="${createLink(action: 'preview', controller: 'scio')}" />
 	  		
 	  		<br />
-	  		
-	  		<input type="submit" value="Edit Scio" class="btn btn-scio"/>
+	  		<g:actionSubmit value="Edit Scio" class="btn btn-scio" action="doedit" />
+	  		<g:actionSubmit value="Delete Scio (Cannot be undone)" class="btn btn-scio-light" action="dodelete" />
 	  	</g:form>
 	</div>
 </body>

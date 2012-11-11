@@ -93,6 +93,28 @@ class ScioController {
 			}
 		}
 	}
+	
+	@Secured(['ROLE_USER'])
+	def dodelete(EditSCIOCommand editCommand){
+		if(editCommand.hasErrors()){
+			render(view: "edit", model : [editCommand : editCommand])
+		}else{
+			User user = loggedUser()
+			Scio scio = Scio.get(editCommand.id)
+			if(scio.canEdit(user)){
+				String title = scio.title
+				try{
+					scio.delete(flush: true)
+					flash.message = "Scio '${title}' deleted"
+				}catch(Exception e){
+					flash.error = "Scio '${title}' can not be delete. It may be referenced by a clone"
+				}
+				redirect controller: "home", action: "user"
+			}else{
+				redirect controller: "login", action: "denied"
+			}
+		}
+	}
 
 	def recommend() {
 		if(params.id) {
@@ -162,7 +184,30 @@ class ScioController {
 class CreateSCIOCommand {
 
 	String title
-
+	
+	class VersionSCIOCommand {
+	
+		Integer id
+	
+		Integer snapshot
+	
+		static constraints = {
+			id(nullable: false)
+			snapshot(nullable: false, validator : { val, obj ->
+				if(!obj.id){
+					//does not validate if id not specified
+					return true
+				}
+	
+				def scio = Scio.get(obj.id)
+				if(scio && scio.hasSnapshot(val)){
+					return true
+				}else{
+					return "notfound"
+				}
+			})
+		}
+	}
 	String content
 
 	String tags
@@ -238,3 +283,4 @@ class EditSCIOCommand {
 		tags(nullable: true, blank: true)
 	}
 }
+
