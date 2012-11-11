@@ -21,7 +21,7 @@ class RenderBBCodeServiceTests {
 [size=1]normal text[/size]
 [size=0.5]small text[/size]
 [list]
-[item]item[/item]
+[item]item[list][item]sub[/item][/list][/item]
 [item]item 2[/item]
 [/list]
 [list=1]
@@ -40,7 +40,7 @@ class RenderBBCodeServiceTests {
 <span style="font-size:1em;">normal text</span>
 <span style="font-size:0.5em;">small text</span>
 <ul>
-<li>item</li>
+<li>item<ul><li>sub</li></ul></li>
 <li>item 2</li>
 </ul>
 <ol start="1">
@@ -48,7 +48,7 @@ class RenderBBCodeServiceTests {
 <li>item 2</li>
 </ol>
 &lt;script&gt;alert('hola');&lt;/script&gt;"""
-		assert html.replaceAll(/\n/, "") == expected.replaceAll(/\n/, "")
+		assert html.replaceAll(/\n/, " ") == expected.replaceAll(/\n/, " ")
 		
     }
 }
