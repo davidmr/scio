@@ -9,9 +9,9 @@
 	<h1>Write a new SCIO</h1>
   	<g:form controller="scio" action="docreate" method="POST" autocomplete="off">
   		<label for="title" class="${hasErrors(bean: scioCommand, field: 'title', 'error')}">Title</label>
-  		<g:textField name="title" value="${scioCommand?.title}"/>
-  		<g:textArea name="content" id="scio-edit">${scioCommand?.content}</g:textArea>
-  		<g:textField name="tagsSearch" id="tags" data-provide="typeahead" placeholder="Tags"/> 
+  		<g:textField name="title" value="${scioCommand?.title}" placeholder="SCIO title" required="true" />
+  		<g:textArea name="content" id="scio-edit" required="true">${scioCommand?.content}</g:textArea>
+  		<g:textField name="tagsSearch" id="tags" data-provide="typeahead" placeholder="Your SCIO tags"/> 
   		<span id="tagsFeedback">${scioCommand?.tags}</span>
   		<g:hiddenField name="tags" value="${scioCommand?.tags}" id="tagsField"/>
   		<br />

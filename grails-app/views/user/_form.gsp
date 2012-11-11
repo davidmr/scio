@@ -3,7 +3,7 @@
 		Fullname <span class="required-indicator">*</span>
 	</label>
 	<div class="controls">
-		<g:textField name="fullname" required="" value="${userInstance?.fullname}"/>
+		<g:textField name="fullname" required="" value="${userInstance?.fullname}" placeholder="Your fullname"/>
 	</div>
 </div>
 
@@ -12,7 +12,7 @@
 		Username <span class="required-indicator">*</span>
 	</label>
 	<div class="controls">
-		<g:textField name="username" required="" value="${userInstance?.username}"/>
+		<g:textField name="username" required="" value="${userInstance?.username}" placeholder="Your username"/>
 	</div>
 </div>
 

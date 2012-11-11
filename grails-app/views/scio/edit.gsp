@@ -6,17 +6,17 @@
 <r:require modules="bbcode,bootstrap-typeahead,editScio"/>
 </head>
 <body>
-	<h1>Edit &quot;${editCommand.title}&quot;</h1>
+	<h2 class="scio-color-green">Edit &quot;${editCommand.title}&quot;</h2>
   	<g:form controller="scio" action="doedit" method="POST" autocomplete="off">
   		<g:textArea name="content" id="scio-edit">${editCommand.content}</g:textArea>
-  		<g:textField name="tagsSearch" id="tags" data-provide="typeahead" placeholder="Tags"/> 
+  		<g:textField name="tagsSearch" id="tags" data-provide="typeahead" placeholder="Add new SCIO tags"/> 
   		<span id="tagsFeedback">${editCommand.tags}</span>
   		<g:hiddenField name="id" value="${params.id}"/>
   		<g:hiddenField name="tags" value="${editCommand.tags}" id="tagsField"/>
   		<g:hiddenField name="findTagsUrl" value="${createLink(controller: 'tag', action: 'search')}"/>
   		<g:hiddenField name="title" value="${editCommand.title}"/>
   		<br />
-  		<input type="submit" value="Edit SCIO"/>
+  		<input type="submit" value="Edit SCIO" class="btn btn-scio"/>
   	</g:form>
 </body>
 </html>
