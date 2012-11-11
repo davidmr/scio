@@ -43,4 +43,10 @@ class User {
 	Set<Tag> getFollowedTags(){
 		UserTag.findAllByUser(this).collect { it.tag } as Set
 	}
+	
+	public boolean followsTag(String tagName){
+		Tag tag = Tag.findByName(tagName)
+		UserTag userTag = UserTag.findByUserAndTag(this, tag)
+		return userTag != null
+	}
 }

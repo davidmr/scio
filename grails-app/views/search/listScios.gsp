@@ -3,11 +3,19 @@
 		<meta name="layout" content="main"/>
 	</head>
 	<body>
-		<h1 class="scio-color-green">Search by tag: ${tag}</h1>
+		<h2 class="scio-color-green">SCIOs tagged: &quot;${tag}&quot;</h2>
+		<g:if test="${followingTag}">
+			<g:form action="unfollow" controller="tag">
+				<g:hiddenField name="tag" value="${tag}"/>
+				<input type="submit" value="Stop following &quot;${tag}&quot;" class="btn btn-scio" />
+			</g:form>
+		</g:if>
+		<g:else>
+			<g:form action="follow" controller="tag">
+				<g:hiddenField name="tag" value="${tag}"/>
+				<input type="submit" value="Follow SCIOs about &quot;${tag}&quot;" class="btn btn-scio" />
+			</g:form>
+		</g:else>
 		<g:render template="listScios" model="${[scioList: scioList]}" />
-		<g:form action="follow">
-			<g:hiddenField name="tag" value="${tag}"/>
-			<input type="submit" value="Follow SCIOs about &quot;${tag}&quot;" class="btn" />
-		</g:form>
 	</body>
 </html>

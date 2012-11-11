@@ -18,10 +18,10 @@ class SearchController {
 		}
 	}
 	
+	@Secured(['ROLE_USER'])
 	def searchMineByTag() {
 		if (params.tag) {
-			def username = springSecurityService.principal.username
-			def user = User.findByUsername(username)
+			def user = loggedUser()
 			def tagsText = params.tag.replaceAll("[ ]+"," ")
 			def tagsList = tagsText.split(" ")
 			def scioList = findMineByTag(user, tagsList, 5)
@@ -33,7 +33,9 @@ class SearchController {
 	def listByTag() {
 		if (params.tag) {
 			def scioList = findByTag([params.tag], 10)
-			render(view: "listScios", model: [tag: params.tag, scioList: scioList])
+			User user = loggedUser()
+			def followingTag = user ? user.followsTag(params.tag) : false
+			render(view: "listScios", model: [tag: params.tag, scioList: scioList, followingTag : followingTag])
 		}
 		return
 	}
@@ -43,30 +45,18 @@ class SearchController {
 		render(template: "listScios", model: [scioList : scioList])
 	}
 	
+	@Secured(['ROLE_USER'])
 	def searchMine() {
-		def username = springSecurityService.principal.username
-		def user = User.findByUsername(username)
+		def user = loggedUser()
 		def scioList = Scio.findAllByOwner(user)
 		render(template: "listScios", model: [scioList : scioList])
 	}
 	
+	@Secured(['ROLE_USER'])
 	def searchMonthsMine() {
-		def username = springSecurityService.principal.username
-		def user = User.findByUsername(username)
+		def user = loggedUser()
 		def monthList = []
 		render(template: "listMonths", model: [scioList : monthList])
-	}
-	
-	@Secured(['ROLE_USER'])
-	def follow(String tag){
-		if(tag){
-			Tag tagObj = Tag.findByName(tag)
-			if(tagObj){
-				UserTag userTag = new UserTag(user: loggedUser(), tag: tagObj).save(failOnError: true)
-				flash.message = "${tag} followed"
-			}
-		}
-		redirect action: "listByTag", params: [tag : tag]
 	}
 	
 	private List findByTag(tagsList, max) {
