@@ -43,3 +43,8 @@ a {
 	color: #225429;
 	text-decoration: underline;
 }
+
+.link-tag, .link-tag:hover {
+	color: white;
+	text-decoration: none;
+}

@@ -40,6 +40,7 @@
 							<span class="scio-username">
 								<sec:loggedInUserInfo field="username"/>
 							</span>
+							<g:link controller="home" action="user" class="btn">Control Panel</g:link>
 							<g:link controller="logout" class="btn">Log out</g:link>
 						</div>
 					</sec:ifLoggedIn>

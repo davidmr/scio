@@ -8,7 +8,10 @@
 		</g:each>
 	</div>
 	<p>
-		<span class="font-little">${scio?.owner?.fullname}</span> - 
+		<img src="${resource(dir: 'images/icons', file: 'user.png')}" />
+		<span class="font-little">${scio?.owner?.username}</span> -
+		
+		<img src="${resource(dir: 'images/icons', file: 'calendar.png')}" />
 		<span class="font-little">
 			<g:snapshotDate snapshot="${scio?.content()}" />
 		</span>
