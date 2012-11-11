@@ -18,6 +18,18 @@ class SearchController {
 		}
 	}
 	
+	def searchMineByTag() {
+		if (params.tag) {
+			def username = springSecurityService.principal.username
+			def user = User.findByUsername(username)
+			def tagsText = params.tag.replaceAll("[ ]+"," ")
+			def tagsList = tagsText.split(" ")
+			def scioList = findMineByTag(user, tagsList, 5)
+			
+			render(template: "listScios", model: [scioList: scioList])
+		}
+	}
+	
 	def listByTag() {
 		if (params.tag) {
 			def scioList = findByTag([params.tag], 10)
@@ -56,6 +68,23 @@ class SearchController {
 				or {
 					tagsList.each { tag ->
 						eq('name', tag)
+					}
+				}
+			}
+			maxResults(max)
+		}
+		return scioList
+	}
+	
+	private List findMineByTag(user, tagsList, max) {
+		def scioList = Scio.createCriteria().listDistinct() {
+			and {
+				eq('owner', user)
+				tags {
+					or {
+						tagsList.each { tag ->
+							eq('name', tag)
+						}
 					}
 				}
 			}

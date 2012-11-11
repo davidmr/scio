@@ -44,6 +44,6 @@
 				</div>
 			</div>
 		</div>
-		<g:hiddenField name="urlSearchByTag" id="urlSearchByTag" value="${createLink(controller: 'search', action: 'searchByTag')}"/>
+		<g:hiddenField name="urlSearchByTag" id="urlSearchByTag" value="${createLink(controller: 'search', action: 'searchMineByTag')}"/>
 	</body>
 </html>
