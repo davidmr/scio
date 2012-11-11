@@ -46,5 +46,12 @@
 				</div>
 			</fieldset>
 		</form>
+		<script type='text/javascript'>
+			<!--
+			(function() {
+				document.forms['loginForm'].elements['j_username'].focus();
+			})();
+			// -->
+		</script>
 	</body>
 </html>
