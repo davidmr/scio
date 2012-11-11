@@ -4,12 +4,14 @@
 	</g:link>
 	<div class="tags">
 		<g:each in="${scio.tags}">
-			<g:if test="${tag && it.name.contains(tag)}">
-				<span class="label label-success">${it.name}</span>
-			</g:if>
-			<g:else>
-				<span class="label">${it.name}</span>
-			</g:else>
+			<g:link controller="search" action="listByTag" params="${[tag: it.name]}" class="link-tag">
+				<g:if test="${tag && it.name.contains(tag)}">
+					<span class="label label-success">${it.name}</span>
+				</g:if>
+				<g:else>
+					<span class="label">${it.name}</span>
+				</g:else>
+			</g:link>
 		</g:each>
 	</div>
 	<p>
