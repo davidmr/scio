@@ -61,7 +61,7 @@
 		<g:if test="${flash.error}">
 			<div class="alert alert-error">
 				<button type="button" class="close" data-dismiss="alert">×</button>
-				<b>Hey: </b>${flash.error}
+				<b>Oops: </b>${flash.error}
 			</div>
 		</g:if>
 		

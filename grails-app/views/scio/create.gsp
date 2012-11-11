@@ -14,6 +14,7 @@
   		<g:textField name="tagsSearch" id="tags" data-provide="typeahead" placeholder="Your SCIO tags"/> 
   		<span id="tagsFeedback">${scioCommand?.tags}</span>
   		<g:hiddenField name="tags" value="${scioCommand?.tags}" id="tagsField"/>
+  		<g:hiddenField name="bbcodepreview" id="bbcodepreview" value="${createLink(action: 'preview', controller: 'scio')}" />
   		<br />
   		<input type="submit" value="Create SCIO"/>
   	</g:form>
