@@ -5,7 +5,7 @@
 	</head>
 	<body>
 		<div class="span12">
-			<h2 class="scio-color-green">New to Scio? Sign up</h2>
+			<h2 class="center scio-color-green">New to Scio? Sign up</h2>
 			
 			<div class="alert-error">
 				<g:hasErrors bean="${userInstance}">
@@ -24,7 +24,7 @@
 					<g:render template="form"/>
 				</fieldset>
 				<fieldset class="buttons">
-					<button type="submit" class="btn btn-scio">Sign in</button>
+					<button type="submit" class="btn">Sign in</button>
 				</fieldset>
 			</g:form>
 		</div>

@@ -7,7 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<title>Scio - Share knowledge</title>
 	
-		<r:require modules="core"/>
+		<r:require module="core"/>
 		<link rel="shortcut icon" href="${resource(dir: 'images', file: 'owl.png')}" type="image/x-icon">
 
 		<g:layoutHead />

@@ -23,14 +23,14 @@
 		
 		<div class="row-fluid">
 			<div id="panelSciosByTag" style="display: none;">			
-				<h2 id="titleSciosByTag" class="scio-color-brown">
-					<img src="${resource(dir: 'images/icons', file: 'star.png')}" /> Scios
+				<h2 id="titleSciosByTag" class="scio-color-green">
+					<img src="${resource(dir: 'images/icons', file: 'check.png')}" /> Scios
 				</h2>
 				<div id="contentSciosByTag">
 				</div>
 			</div>
 			<div id="panelSciosFeatured">
-				<h2 id="titleSciosFeatured" class="scio-color-brown">
+				<h2 id="titleSciosFeatured" class="scio-color-green">
 					<img src="${resource(dir: 'images/icons', file: 'star.png')}" /> Featured Scios
 				</h2>
 				<div id="contentSciosFeatured">
