@@ -10,9 +10,13 @@ class BootStrap {
     def init = { servletContext ->
 		environments{
 			development{
-				User user = new User(fullname: 'scio', username: 'scio', password: 'password', enabled: true).save(failOnError: true)
 				Role roleUser = new Role(authority: 'ROLE_USER').save(failOnError: true)
-				UserRole.create(user, roleUser, true)
+				
+				User userScio = new User(fullname: 'scio', username: 'scio', password: 'password', enabled: true).save(failOnError: true)
+				User userYyninor = new User(fullname: 'yyninor', username: 'yyninor', password: 'password', enabled: true).save(failOnError: true)
+				
+				UserRole.create(userScio, roleUser, true)
+				UserRole.create(userYyninor, roleUser, true)
 				
 				Tag tag1 = new Tag(name: "tag1").save(failOnError: true)
 				Tag tag2 = new Tag(name: "abc").save(failOnError: true)
@@ -23,6 +27,9 @@ class BootStrap {
 				Set tags2 = [tag3, tag4] as Set
 				Set tags3 = [tag1, tag3] as Set
 				Set tags4 = [tag2, tag4] as Set
+				
+				Calendar calendarSeptember = new GregorianCalendar(2012, 8, 7);
+				Date dateSeptember = calendarSeptember.getTime()
 				
 				String bbcodeContent = """[b]strong[/b]
 										[i]italic[/i]
@@ -44,22 +51,27 @@ class BootStrap {
 				
 				Snapshot snapshot1 = new Snapshot(content: "First [b]content[/b]").save(failOnError: true)
 				Snapshot snapshot2 = new Snapshot(content: bbcodeContent, previous: snapshot1).save(failOnError: true)
+				Snapshot snapshot3 = new Snapshot(content: "Third [b]content[/b]", previous: snapshot1, dateCreated: dateSeptember).save(failOnError: true)
 				
-				Scio example1 = new Scio(title: 'Title 1', owner: user, recommendations: 5, head: snapshot2)
+				Scio example1 = new Scio(title: 'Title 1', owner: userScio, recommendations: 5, head: snapshot2)
 				example1.tags = tags1
 				example1.save(failOnError: true)
 				
-				Scio example2 = new Scio(title: 'Title 2', owner: user, recommendations: 4)
+				Scio example2 = new Scio(title: 'Title 2', owner: userScio, recommendations: 4)
 				example2.init("This is the content of the scio 2", tags2)
 				example2.save(failOnError: true)
 				
-				Scio example3 = new Scio(title: 'Title 3', owner: user, recommendations: 3)
+				Scio example3 = new Scio(title: 'Title 3', owner: userScio, recommendations: 3)
 				example3.init("This is the content of the scio 3", tags3)
 				example3.save(failOnError: true)
 				
-				Scio example4 = new Scio(title: 'Title 4', owner: user, recommendations: 0)
+				Scio example4 = new Scio(title: 'Title 4', owner: userScio, recommendations: 0)
 				example4.init("This is the content of the scio 4", tags4)
 				example4.save(failOnError: true)
+				
+				Scio example5 = new Scio(title: 'Title 5', owner: userYyninor, recommendations: 0, head: snapshot3)
+				example5.tags = tags1
+				example5.save(failOnError: true)
 			}
 			production{
 				Role.findOrSaveWhere(authority: 'ROLE_USER')

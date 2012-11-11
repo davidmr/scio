@@ -9,7 +9,7 @@
 			<div class="span3">
 				<div class="nav-well">
 					<form class="form-search">
-						<input type="text" class="input-auto" id="textScioByTag" placeholder="Tag to search" />
+						<input type="text" class="input-auto" id="textMyScioByTag" placeholder="Tag to search" />
 						<button type="submit" class="btn btn-scio" id="buttonMySciosByTag">Search</button>
 					</form>
 	            </div>

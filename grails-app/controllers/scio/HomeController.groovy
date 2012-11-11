@@ -7,7 +7,6 @@ class HomeController {
 	def springSecurityService
 
     def index() {
-		
 	}
 	
 	@Secured(['ROLE_USER'])

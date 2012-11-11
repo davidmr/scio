@@ -1,5 +1,21 @@
 (function($){
 	$(document).ready(function(){
+		$("#textScioByTag").keypress(function (ev) {
+			var charCode = ev.charCode || ev.keyCode;
+			if (charCode == 13) {
+				searchByTag($(this).val(), 'urlSearchByTag', 'panelSciosFeatured');
+				return false;
+			}
+		});
+		
+		$("#textMyScioByTag").keypress(function (ev) {
+			var charCode = ev.charCode || ev.keyCode;
+			if (charCode == 13) {
+				searchByTag($(this).val(), 'urlSearchByTag', 'panelSciosMine');
+				return false;
+			}
+		});
+		
 		$("#buttonSciosByTag").click(function(ev){
 			ev.preventDefault();
 			var elemCriteria = $("#textScioByTag");
@@ -8,7 +24,7 @@
 		
 		$("#buttonMySciosByTag").click(function(ev){
 			ev.preventDefault();
-			var elemCriteria = $("#textScioByTag");
+			var elemCriteria = $("#textMyScioByTag");
 			searchByTag(elemCriteria.val(), 'urlSearchByTag', 'panelSciosMine');
 		});
 		

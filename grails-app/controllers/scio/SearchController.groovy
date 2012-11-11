@@ -55,10 +55,13 @@ class SearchController {
 	def searchMonthsMine() {
 		def user = loggedUser()
 		def monthList = Scio.withCriteria {
-			head {
-				projections {
-					groupProperty("monthCreated")
-					count("id")
+			and {
+				eq('owner', user)
+				head {
+					projections {
+						groupProperty("monthCreated")
+						count("id")
+					}
 				}
 			}
 		}
