@@ -5,7 +5,6 @@
 <meta name="layout" content="main"/>
 </head>
 <body>
-	<g:renderErrors/>
 	<g:if test="${scio != null}">
 		<div class="dialog">
 		<p>This SCIO is a clone of another one. You can ask the original author to merge the changes

@@ -57,6 +57,12 @@
 				<b>Hey: </b>${flash.message}
 			</div>
 		</g:if>
+		
+		<g:hasErrors>
+			<div class="alert alert-error">
+			<button type="button" class="close" data-dismiss="alert">×</button>
+			<g:renderErrors/></div>
+		</g:hasErrors>
 			
 		<g:layoutBody />
 	

@@ -7,7 +7,6 @@
 </head>
 <body>
 	<h1>Edit &quot;${editCommand.title}&quot;</h1>
-	<g:renderErrors />
   	<g:form controller="scio" action="doedit" method="POST" autocomplete="off">
   		<g:textArea name="content" id="scio-edit">${editCommand.content}</g:textArea>
   		<g:textField name="tagsSearch" id="tags" data-provide="typeahead" placeholder="Tags"/> 

@@ -5,7 +5,6 @@
 <meta name="layout" content="main"/>
 </head>
 <body>
-	<g:renderErrors/>
 	<g:if test="${scio != null}">
 		<div class="dialog">
 			<div>To improve this SCIO you first must clone it and then edit it. <br />Are you sure you want to clone &quot;${scio.title}&quot; by ${scio.owner.username}?</div>

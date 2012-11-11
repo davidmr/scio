@@ -5,8 +5,6 @@
 <meta name="layout" content="main"/>
 </head>
 <body>
-	<g:renderErrors />
-	
 	<h2 class="scio-color-green">${scio.title}</h2>
 		<h4 class="scio-color-brown">Version ${snapshot.id } of <g:snapshotDate snapshot="${snapshot}"/></h4>
 		<h4 class="scio-color-brown">
