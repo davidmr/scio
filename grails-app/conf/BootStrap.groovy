@@ -61,6 +61,9 @@ class BootStrap {
 				example4.init("This is the content of the scio 4", tags4)
 				example4.save(failOnError: true)
 			}
+			production{
+				Role.findOrSaveWhere(authority: 'ROLE_USER')
+			}
 		}
     }
     def destroy = {

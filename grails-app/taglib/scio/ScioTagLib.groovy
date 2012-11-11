@@ -12,4 +12,9 @@ class ScioTagLib {
 		out << renderBBCodeService.render(attrs.snapshot.content)
 	}
 	
+	def renderBBCode = { attrs ->
+		out << renderBBCodeService.render(attrs.text ?: "")
+		
+	}
+	
 }

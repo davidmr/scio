@@ -13,6 +13,10 @@ class ScioController {
 		User user = loggedUser()
 		[scio : scio, canEdit: scio.canEdit(user)]
 	}
+	
+	def preview(){
+		render(template: "preview", model: [data: params.data])
+	}
 
 	def version(VersionSCIOCommand versionCommand){
 		if(versionCommand.hasErrors()){

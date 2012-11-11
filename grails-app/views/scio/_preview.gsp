@@ -1,0 +1,1 @@
+<g:renderBBCode text="${data}" />

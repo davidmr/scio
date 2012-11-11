@@ -25,8 +25,11 @@ environments {
     }
     production {
         dataSource {
+			driverClassName = "com.mysql.jdbc.Driver"
             dbCreate = "update"
-            url = "jdbc:h2:prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
+            url = "jdbc:mysql://localhost:3306/scio"
+			username = "root"
+			password = "admin"
             pooled = true
             properties {
                maxActive = -1

@@ -13,13 +13,17 @@ class RenderBBCodeService {
 		'[list](.*?)[/list]' : '<ul>$1</ul>',
 		'[list=(.*?)](.*?)[/list]' : '<ol start="$1">$2</ol>',
 		'[item](.*?)[/item]' : '<li>$1</li>',
-		'[quote](.*?)[/quote]' : '<blockquote>$1</blockquote>'
+		'[quote](.*?)[/quote]' : '<blockquote>$1</blockquote>',
+		'[break][/break]' : "<br />"
 	]
 
 	def render(String bbcode) {
-		def result = bbcode.replaceAll(/\n|\r\n|\r|\n\r|[\s]+/, " ")
-		result = result.replaceAll(/</,"&lt;")
+		def result = bbcode.replaceAll(/</,"&lt;")
 		result = result.replaceAll(/>/, "&gt;")
+		
+		result = result.readLines().join("<br />")
+		result = result.replaceAll(/[\s]+/, " ")
+		
 		map.each { key, value ->
 			def escapedKey = key.replaceAll('\\[','\\\\[').replaceAll('\\]','\\\\]')
 			result = convert(result, escapedKey, value)

@@ -1,5 +1,7 @@
 (function($) {
 	$(document).ready(function() {
+		var bbcodesettings = mySettings;
+		bbcodesettings.previewParserPath = $("#bbcodepreview").val();
 		$("#scio-edit").markItUp(mySettings);
 		$("#tags").typeahead({
 			source : findTags,
