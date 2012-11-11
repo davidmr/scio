@@ -26,6 +26,17 @@
 			<p>
 				SCIO is built by Yury Ni&ntilde;o and David Monta&ntilde;o.
 			</p>
+			
+			<h4>Licenses</h4>
+			This site uses open-source software
+			<ul>
+				<li><a href="http://grails.org/">Grails</a></li>
+				<li><a href="http://markitup.jaysalvat.com/home/">markItUp</a></li>
+				<li><a href="http://code.google.com/p/java-diff-utils/">Java Diff Utils</a></li>
+				<li><a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a></li>
+				<li><a href="http://jquery.com/">jQuery</a>
+				<li><a href="http://grails.org/plugin/spring-security-core">Grails Spring Security Plugin</a></li>
+			</ul>
 		</div>
 	</div>
 </body>
