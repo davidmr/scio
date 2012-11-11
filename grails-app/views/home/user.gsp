@@ -14,12 +14,16 @@
 					</form>
 	            </div>
 	            <div class="nav-well">
-					<div class="nav-well-title">Archives</div>
-					<g:include controller="search" action="searchMonthsMine" />
+	            	<div class="nav-well-title">Followed tags</div>
+	            	<g:include controller="tag" action="followed" />
 	            </div>
 	            <div class="nav-well">
 	            	<div class="nav-well-title">Merge Requests</div>
 	            	<g:include controller="mergerequest" action="list" />
+	            </div>
+	            <div class="nav-well">
+					<div class="nav-well-title">Archives</div>
+					<g:include controller="search" action="searchMonthsMine" />
 	            </div>
 			</div>
 			<div class="span6">

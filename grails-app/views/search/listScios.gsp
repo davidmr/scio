@@ -7,7 +7,7 @@
 		<g:if test="${followingTag}">
 			<g:form action="unfollow" controller="tag">
 				<g:hiddenField name="tag" value="${tag}"/>
-				<input type="submit" value="Stop following &quot;${tag}&quot;" class="btn btn-scio" />
+				<input type="submit" value="Stop following &quot;${tag}&quot;" class="btn btn-scio-light" />
 			</g:form>
 		</g:if>
 		<g:else>

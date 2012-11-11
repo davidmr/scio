@@ -36,6 +36,12 @@ class TagController {
 		redirect controller: "search", action: "listByTag", params: [tag : tag]
 	}
 	
+	@Secured(['ROLE_USER'])
+	def followed(){
+		User user = loggedUser()
+		render(template: "followed", model: [tags : user.followedTags])
+	}
+	
 	private User loggedUser(){
 		if(springSecurityService.loggedIn){
 			User.findByUsername(springSecurityService.principal.username)

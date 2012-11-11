@@ -10,6 +10,7 @@ class MergerequestController {
 	
 	def springSecurityService
 
+	@Secured(['ROLE_USER'])
 	def list() {
 		User user = loggedUser()
 		def requests = MergeRequest.withCriteria {
