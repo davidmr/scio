@@ -1,6 +1,8 @@
 package scio
 
 class SearchController {
+	
+	def springSecurityService
 
     def listScios() { }
 	
@@ -27,7 +29,18 @@ class SearchController {
 		render(template: "listScios", model: [scioList : scioList])
 	}
 	
-	List findByTag(tagsList, max) {
+	def follow(String tag){
+		if(tag){
+			Tag tagObj = Tag.findByName(tag)
+			if(tagObj){
+				UserTag userTag = new UserTag(user: loggedUser(), tag: tagObj).save(failOnError: true)
+				flash.message = "${tag} followed"
+			}
+		}
+		redirect action: "listByTag", params: [tag : tag]
+	}
+	
+	private List findByTag(tagsList, max) {
 		def scioList = Scio.createCriteria().listDistinct() {
 			tags {
 				or {
@@ -39,6 +52,12 @@ class SearchController {
 			maxResults(max)
 		}
 		return scioList
+	}
+	
+	private User loggedUser(){
+		if(springSecurityService.loggedIn){
+			User.findByUsername(springSecurityService.principal.username)
+		}
 	}
 	
 }

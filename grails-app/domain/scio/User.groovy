@@ -39,4 +39,8 @@ class User {
 	protected void encodePassword() {
 		password = springSecurityService.encodePassword(password)
 	}
+	
+	Set<Tag> getFollowedTags(){
+		UserTag.findAllByUser(this).collect { it.tag } as Set
+	}
 }
