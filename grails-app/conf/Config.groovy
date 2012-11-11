@@ -96,6 +96,8 @@ grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'scio.UserRole
 grails.plugins.springsecurity.authority.className = 'scio.Role'
 grails.plugins.springsecurity.securityConfigType = "Annotation"
 grails.plugins.springsecurity.successHandler.defaultTargetUrl = '/home/user'
+grails.plugins.springsecurity.successHandler.alwaysUseDefault = true
+
 
 //grails.plugins.springsecurity.interceptUrlMap = [
 //	'/scio/create' : ['ROLE_USER'],
