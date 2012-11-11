@@ -25,7 +25,7 @@
 			<div class="mywell well-center">
 				<div id="panelSciosByTag" style="display: none;">			
 					<h2 id="titleSciosByTag" class="scio-color-green">
-						<img src="${resource(dir: 'images/icons', file: 'check.png')}" /> Scios
+						<img src="${resource(dir: 'images/icons', file: 'star.png')}" /> Scios
 					</h2>
 					<div id="contentSciosByTag">
 					</div>

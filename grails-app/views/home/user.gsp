@@ -23,7 +23,11 @@
 			</div>
 			<div class="span6">
 				<div class="mywell well-all">
-					<g:link controller="scio" action="create">Create SCIO</g:link>
+					<h3 class="scio-color-green">
+						<img src="${resource(dir: 'images/icons', file: 'star.png')}" /> Last Scios
+						<g:link controller="scio" action="create" class="btn btn-scio pull-right">Create SCIO</g:link>
+					</h3>
+					<g:render template="/search/listScios" model="${[scioList: scioList]}" />
 				</div>
 			</div>
 		</div>

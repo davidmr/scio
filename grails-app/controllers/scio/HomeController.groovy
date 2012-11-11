@@ -9,7 +9,11 @@ class HomeController {
 	}
 	
 	def user(){
-		[username : springSecurityService.principal.username]
+		def username = springSecurityService.principal.username
+		def user = User.findByUsername(username)
+		def scioList = Scio.findAllByOwner(user) 
+		
+		[username : username, scioList: scioList]
 	}
 	
 }
