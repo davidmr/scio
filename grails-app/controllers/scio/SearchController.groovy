@@ -50,6 +50,13 @@ class SearchController {
 		render(template: "listScios", model: [scioList : scioList])
 	}
 	
+	def searchMonthsMine() {
+		def username = springSecurityService.principal.username
+		def user = User.findByUsername(username)
+		def monthList = []
+		render(template: "listMonths", model: [scioList : monthList])
+	}
+	
 	@Secured(['ROLE_USER'])
 	def follow(String tag){
 		if(tag){

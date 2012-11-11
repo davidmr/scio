@@ -15,11 +15,7 @@
 	            </div>
 	            <div class="nav-well">
 					<div class="nav-well-title">Archives</div>
-					<ul class="nav nav-list">
-						<li><a href="#">December</a></li>
-						<li><a href="#">November</a></li>
-						<li><a href="#">October</a></li>
-					</ul>
+					<g:include controller="search" action="searchMonthsMine" />
 	            </div>
 			</div>
 			<div class="span6">
