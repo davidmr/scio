@@ -17,13 +17,23 @@ class RenderBBCodeService {
 	]
 
 	def render(String bbcode) {
-		def result = bbcode.replaceAll(/\n/, "")
+		def result = bbcode.replaceAll(/\n|\r\n|\r|\n\r|[\s]+/, " ")
 		result = result.replaceAll(/</,"&lt;")
 		result = result.replaceAll(/>/, "&gt;")
 		map.each { key, value ->
 			def escapedKey = key.replaceAll('\\[','\\\\[').replaceAll('\\]','\\\\]')
-			result = result.replaceAll(escapedKey, value)
+			result = convert(result, escapedKey, value)
 		}
 		return result.trim()
+	}
+	
+	private String convert(String original, String key, String value){
+		String last = original
+		String current = original.replaceAll(key, value)
+		while(current != last){
+			last = current
+			current = current.replaceAll(key, value)
+		}
+		current
 	}
 }
