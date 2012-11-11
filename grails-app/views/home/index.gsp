@@ -14,7 +14,7 @@
 					<p>Scio is a place to share knowledge.</p>
 					
 					<form class="form-search">
-						<input type="text" placeholder="What do you want to know?" id="textScioByTag" size="500">
+						<input type="text" placeholder="What do you want to know?" id="textScioByTag" />
 						<a href="#" class="btn btn-scio" id="buttonSciosByTag">Search</a>
 					</form>
 				</div>

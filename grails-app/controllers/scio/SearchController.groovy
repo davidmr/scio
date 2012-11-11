@@ -31,6 +31,13 @@ class SearchController {
 		render(template: "listScios", model: [scioList : scioList])
 	}
 	
+	def searchMine() {
+		def username = springSecurityService.principal.username
+		def user = User.findByUsername(username)
+		def scioList = Scio.findAllByOwner(user)
+		render(template: "listScios", model: [scioList : scioList])
+	}
+	
 	@Secured(['ROLE_USER'])
 	def follow(String tag){
 		if(tag){

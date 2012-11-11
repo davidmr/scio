@@ -2,15 +2,20 @@
 	$(document).ready(function(){
 		$("#buttonSciosByTag").click(function(ev){
 			ev.preventDefault();
-			searchByTag();
+			searchByTag('panelSciosFeatured');
+		});
+		
+		$("#buttonMySciosByTag").click(function(ev){
+			ev.preventDefault();
+			searchByTag('panelSciosMine');
 		});
 	});
 	
-	function searchByTag() {
+	function searchByTag(panelSciosHide) {
 		var elemTag = $("#textScioByTag")
 		var elemPanelShow = $("#panelSciosByTag");
 		var elemContentShow = $("#contentSciosByTag");
-		var elemPanelHide = $("#panelSciosFeatured");
+		var elemPanelHide = $("#" + panelSciosHide);
 
 		var urlSearch = $("#urlSearchByTag").val();
 		$.get(urlSearch, {tag: elemTag.val()}, function(data) {
