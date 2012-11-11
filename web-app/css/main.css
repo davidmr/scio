@@ -1,15 +1,25 @@
-.main{
-	min-height: 500px;	
+.main {
+	min-height: 500px;
 }
 
 .center {
 	text-align: center;
 }
 
+.opacity {
+	opacity: 0.3;
+	filter: alpha(opacity = 30);
+}
+
 /* LINKS */
 a {
 	color: #3d7b3d;
 	text-decoration: none;
+}
+
+a:hover {
+	color: #214321;
+	text-decoration: underline;
 }
 
 /* FONTS */
@@ -19,6 +29,10 @@ a {
 
 .scio-color-green {
 	color: #225429;
+}
+
+.scio-color-green-light {
+	color: #83c18a;
 }
 
 .font-little {
@@ -47,18 +61,22 @@ a {
 	color: #225429;
 	text-decoration: underline;
 }
-.link-tag, .link-tag:hover {
+
+.link-tag,.link-tag:hover {
 	color: white;
 	text-decoration: none;
 }
-.main .markItUp{
+
+.main .markItUp {
 	border: none;
 }
-.main .markItUpContainer{
+
+.main .markItUpContainer {
 	background: none;
 	border: 1px solid #bbb;
 }
-.main .markItUpEditor{
+
+.main .markItUpEditor {
 	background: none;
 	border: 1px solid #ccc;
 }
