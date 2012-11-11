@@ -5,6 +5,8 @@ import org.springframework.dao.DataIntegrityViolationException
 class UserController {
 
     static allowedMethods = [save: "POST"]
+	
+	def userService
 
     def index() {
     }
@@ -17,13 +19,13 @@ class UserController {
 		if (urc.hasErrors()) {
 			render(view: "create", model: [userInstance: urc])
 		} else {
-			def userInstance = new User(urc.properties)
-			if (!userInstance.save(flush: true)) {
+			def userInstance = userService.createUser(urc)
+			if (userInstance.hasErrors()) {
 	            render(view: "create", model: [userInstance: userInstance])
 	            return
 	        }
-	        flash.message = message(code: 'default.created.message', args: [message(code: 'user.label', default: 'User'), userInstance.id])
-	        redirect(controller: "login", action: "index", id: userInstance.id)
+	        flash.message = message(code: 'welcome.message')
+	        redirect(controller: "login", action: "auth")
 		}
     }
 
@@ -41,7 +43,7 @@ class UserRegistrationCommand {
 		
 		username(size: 3..20)
 		
-		password(size: 6..8, blank: false,
+		password(size: 6..20, blank: false,
 			validator: { passwd, urc ->
 				return passwd != urc.username
 			})

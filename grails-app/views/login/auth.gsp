@@ -40,10 +40,7 @@
 				
 				<div class="control-group">
 					<div class="controls">
-				  		<label class="checkbox">
-				    		<input type='checkbox' class='chk' name='${rememberMeParameter}' id='remember_me' <g:if test='${hasCookie}'>checked='checked'</g:if>/>
-							<g:message code="springSecurity.login.remember.me.label"/>
-						</label>
+				  		
 						<button type="submit" class="btn pull-right">${message(code: "springSecurity.login.button")}</button>
 					</div>
 				</div>
