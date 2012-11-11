@@ -1,11 +1,12 @@
 /* DIVS */
-.container, .navbar-fixed-top .container {
+.container,.navbar-fixed-top .container {
 	width: 85%;
 }
 
 .scio-container-plus {
 	margin-top: 50px;
 }
+
 .scio-container-minus {
 	margin-top: -50px;
 }
@@ -51,16 +52,19 @@
 .navbar-inverse .navbar-inner {
 	background-color: #1b1b1b;
 	background-image: -moz-linear-gradient(top, #172817, #0c220c);
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#172817), to(#0c220c) );
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#172817),
+		to(#0c220c) );
 	background-image: -webkit-linear-gradient(top, #172817, #0c220c);
 	background-image: -o-linear-gradient(top, #172817, #0c220c);
 	background-image: linear-gradient(to bottom, #172817, #0c220c);
 	background-repeat: repeat-x;
 	border-color: #252525;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff172817', endColorstr='#ff0c220c', GradientType=0 );
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff172817',
+		endColorstr='#ff0c220c', GradientType=0 );
 }
 
-.navbar-inverse .nav .active>a,.navbar-inverse .nav .active>a:hover,.navbar-inverse .nav .active>a:focus {
+.navbar-inverse .nav .active>a,.navbar-inverse .nav .active>a:hover,.navbar-inverse .nav .active>a:focus
+	{
 	color: #ffffff;
 	background-color: #0c220c;
 }
@@ -95,16 +99,30 @@
 	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
 	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
 }
-.history{
+
+.history {
 	clear: both;
 }
-.history ul{
+
+.history ul {
 	list-style: none;
 }
+
 .dialog {
 	margin: 7em auto;
 	width: 50%;
 	border: 1px solid #ccc;
 	border-radius: 5px;
-	padding: 2em; 
+	padding: 2em;
+}
+
+.text {
+	padding: 1em 1em;
+	background-color: gainsboro;
+	border-radius: 5px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	line-height: 25px;
+	text-align: justify;
+	font-size: 14px;
 }

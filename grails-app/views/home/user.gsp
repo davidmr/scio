@@ -17,6 +17,10 @@
 					<div class="nav-well-title">Archives</div>
 					<g:include controller="search" action="searchMonthsMine" />
 	            </div>
+	            <div class="nav-well">
+	            	<div class="nav-well-title">Merge Requests</div>
+	            	<g:include controller="mergerequest" action="list" />
+	            </div>
 			</div>
 			<div class="span6">
 				<div class="mywell well-all">
@@ -30,7 +34,7 @@
 					</div>
 					<div id="panelSciosMine">
 						<h3 id="titleSciosMine" class="scio-color-green">
-							<img src="${resource(dir: 'images/icons', file: 'star.png')}" /> Last Scios
+							<img src="${resource(dir: 'images/icons', file: 'star.png')}" /> My Last Scios
 							<g:link controller="scio" action="create" class="btn btn-scio pull-right">Create SCIO</g:link>
 						</h3>
 						<div id="contentSciosMine">

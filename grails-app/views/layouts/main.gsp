@@ -24,7 +24,7 @@
 								<img src="${resource(dir: 'images/icons', file: 'owl.png')}" /> SCIO
 							</a>
 						</li>
-						<li class="active"><a href="#">About</a></li>
+						<li class="active"><g:link controller="home" action="about">About</g:link></li>
 					</ul>
 					<sec:ifNotLoggedIn>
 						<form action='${request.contextPath}${SpringSecurityUtils.securityConfig.apf.filterProcessesUrl}' method='POST' id='loginForm' class='navbar-form little pull-right' autocomplete='off'>
@@ -60,8 +60,8 @@
 		
 		<g:hasErrors>
 			<div class="alert alert-error">
-			<button type="button" class="close" data-dismiss="alert">×</button>
-			<g:renderErrors/></div>
+				<button type="button" class="close" data-dismiss="alert">×</button>
+				<g:renderErrors/></div>
 		</g:hasErrors>
 			
 		<g:layoutBody />

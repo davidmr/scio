@@ -7,8 +7,18 @@ import difflib.DiffRowGenerator
 class MergerequestController {
 	
 	def scioService
+	
+	def springSecurityService
 
-	def index() {
+	def list() {
+		User user = loggedUser()
+		def requests = MergeRequest.withCriteria {
+			destination{
+				eq("owner", user)
+			}
+			eq("pending", true)
+		}
+		render(template: "list", model : [requests : requests])
 	}
 
 	@Secured(['ROLE_USER'])
@@ -57,5 +67,11 @@ class MergerequestController {
 			}catch(NumberFormatException e){}
 		}
 		throw new MergeRequestNotFoundException()
+	}
+	
+	private User loggedUser(){
+		if(springSecurityService.loggedIn){
+			User.findByUsername(springSecurityService.principal.username)
+		}
 	}
 }

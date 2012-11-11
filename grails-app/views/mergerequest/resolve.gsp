@@ -7,8 +7,8 @@
 <r:require module="diff" />
 </head>
 <body>
-<h1>${merge.owner.username} is asking to merge.</h1>
-<h2>Here is the difference with your SCIO</h2>
+<h2 class="scio-color-green">${merge.owner.username} is asking to merge.</h2>
+<h3 class="scio-color-brown">Here is the difference with your SCIO</h3>
 <table class="diff">
 	<tr><th></th><th>Original</th><th>Revised</th></tr>
 	<g:each in="${diffRows}" var="diff">
@@ -32,8 +32,8 @@
 
 <g:form controller="mergerequest">
 	<g:hiddenField name="id" value="${merge.id}"/>
-	<g:actionSubmit value="Accept" action="accept" />
-	<g:actionSubmit value="Reject" action="reject" />
+	<g:actionSubmit value="Accept Merge" action="accept" class="btn btn-scio" />
+	<g:actionSubmit value="Reject Merge" action="reject" class="btn btn-scio-light" />
 </g:form>
 </body>
 </html>

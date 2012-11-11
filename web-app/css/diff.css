@@ -14,6 +14,7 @@
 
 .diff {
 	border-collapse: collapse;
+	margin: 2em 0 2em 0;
 }
 .diff td,th{
 	border: 1px solid #ccc;

@@ -16,4 +16,8 @@ class HomeController {
 		[username : username]
 	}
 	
+	def about(){
+		
+	}
+	
 }
