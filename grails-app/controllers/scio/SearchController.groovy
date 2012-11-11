@@ -87,7 +87,7 @@ class SearchController {
 			tags {
 				or {
 					tagsList.each { tag ->
-						like('name', tag)
+						like('name', "%" + tag + "%")
 					}
 				}
 			}
@@ -103,7 +103,7 @@ class SearchController {
 				tags {
 					or {
 						tagsList.each { tag ->
-							like('name', tag)
+							like('name', "%" + tag + "%")
 						}
 					}
 				}
