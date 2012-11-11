@@ -23,14 +23,21 @@
 	function searchByTag(criteria, urlSearch, panelSciosHide) {
 		var elemPanelShow = $("#panelSciosByTag");
 		var elemContentShow = $("#contentSciosByTag");
+		
+		var elemPanelError = $("#panelNoScios");
 		var elemPanelHide = $("#" + panelSciosHide);
 
 		var url = $("#" + urlSearch).val();
 		$.get(url, {criteria: criteria}, function(data) {
-			elemContentShow.empty();
-			elemContentShow.append(data);
-			elemPanelShow.show();
-			
+			if (data) {
+				elemContentShow.empty();
+				elemContentShow.append(data);
+				elemPanelShow.show();
+				elemPanelError.hide();
+			} else {
+				elemPanelError.show();
+				elemPanelShow.hide()
+			}
 			elemPanelHide.hide();
 		});
 	}

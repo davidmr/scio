@@ -14,7 +14,7 @@
 					</form>
 	            </div>
 	            <div class="nav-well">
-	            	<div class="nav-well-title">Followed tags</div>
+	            	<div class="nav-well-title">Followed Tags</div>
 	            	<g:include controller="tag" action="followed" />
 	            </div>
 	            <div class="nav-well">
@@ -36,6 +36,16 @@
 						<div id="contentSciosByTag">
 						</div>
 					</div>
+					
+					<div id="panelNoScios" style="display: none;">
+						<h2 id="titleNoScios" class="scio-color-green">
+							<img src="${resource(dir: 'images/icons', file: 'star.png')}" /> Scios
+						</h2>
+						<div id="contentNoScios">
+							Sorry. We don't find a Scio match the search.
+						</div>
+					</div>
+					
 					<div id="panelSciosMine">
 						<h3 id="titleSciosMine" class="scio-color-green">
 							<img src="${resource(dir: 'images/icons', file: 'star.png')}" /> My Last Scios

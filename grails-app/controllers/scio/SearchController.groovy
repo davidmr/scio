@@ -72,12 +72,14 @@ class SearchController {
 	
 	def listByTag() {
 		def scioList = []
-		if (params.criteria) {
-			scioList = findByTag([params.criteria], 10)
+		def followingTag = false
+		
+		if (params.tag) {
 			User user = loggedUser()
-			def followingTag = user ? user.followsTag(params.criteria) : false
+			scioList = findByTag([params.tag], 10)
+			followingTag = user ? user.followsTag(params.tag) : false
 		}
-		render(view: "listScios", model: [tag: params.criteria, scioList: scioList, followingTag : followingTag])
+		render(view: "listScios", model: [tag: params.tag, scioList: scioList, followingTag : followingTag])
 	}
 	
 	private List findByTag(tagsList, max) {

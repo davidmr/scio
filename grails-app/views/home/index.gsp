@@ -30,6 +30,16 @@
 					<div id="contentSciosByTag">
 					</div>
 				</div>
+				
+				<div id="panelNoScios" style="display: none;">
+					<h2 id="titleNoScios" class="scio-color-green">
+						<img src="${resource(dir: 'images/icons', file: 'star.png')}" /> Scios
+					</h2>
+					<div id="contentNoScios">
+						Sorry. We don't find a Scio match the search.
+					</div>
+				</div>
+				
 				<div id="panelSciosFeatured">
 					<h2 id="titleSciosFeatured" class="scio-color-green">
 						<img src="${resource(dir: 'images/icons', file: 'star.png')}" /> Featured Scios
