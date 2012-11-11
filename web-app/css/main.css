@@ -47,8 +47,18 @@ a {
 	color: #225429;
 	text-decoration: underline;
 }
-
 .link-tag, .link-tag:hover {
 	color: white;
 	text-decoration: none;
+}
+.main .markItUp{
+	border: none;
+}
+.main .markItUpContainer{
+	background: none;
+	border: 1px solid #bbb;
+}
+.main .markItUpEditor{
+	background: none;
+	border: 1px solid #ccc;
 }
