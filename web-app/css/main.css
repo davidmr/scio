@@ -1,19 +1,11 @@
-/* CONTAINER */
-.scio-container-plus {
-	margin-top: 50px;
-}
-
-.scio-container-minus {
-	margin-top: -50px;
-}
-
 .center {
 	text-align: center;
 }
 
-/* SCIO */
-.scio-content {
-	margin: 15px 0px;
+/* LINKS */
+a {
+	color: #3d7b3d;
+	text-decoration: none;
 }
 
 /* FONTS */

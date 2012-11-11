@@ -5,7 +5,7 @@
 		<r:require modules="searchScio"/>
 	</head>
 	<body>
-		<div class="row scio-container-minus">
+		<div class="row-fluid scio-container-minus">
 			<div class="span12">
 				<div class="hero-unit">
 					<h1>
@@ -22,23 +22,24 @@
 		</div>
 		
 		<div class="row-fluid">
-			<div id="panelSciosByTag" style="display: none;">			
-				<h2 id="titleSciosByTag" class="scio-color-green">
-					<img src="${resource(dir: 'images/icons', file: 'check.png')}" /> Scios
-				</h2>
-				<div id="contentSciosByTag">
+			<div class="mywell well-center">
+				<div id="panelSciosByTag" style="display: none;">			
+					<h2 id="titleSciosByTag" class="scio-color-green">
+						<img src="${resource(dir: 'images/icons', file: 'check.png')}" /> Scios
+					</h2>
+					<div id="contentSciosByTag">
+					</div>
 				</div>
-			</div>
-			<div id="panelSciosFeatured">
-				<h2 id="titleSciosFeatured" class="scio-color-green">
-					<img src="${resource(dir: 'images/icons', file: 'star.png')}" /> Featured Scios
-				</h2>
-				<div id="contentSciosFeatured">
-					<g:include controller="search" action="searchFeatured" />
+				<div id="panelSciosFeatured">
+					<h2 id="titleSciosFeatured" class="scio-color-green">
+						<img src="${resource(dir: 'images/icons', file: 'star.png')}" /> Featured Scios
+					</h2>
+					<div id="contentSciosFeatured">
+						<g:include controller="search" action="searchFeatured" />
+					</div>
 				</div>
 			</div>
 		</div>
-		
 		<g:hiddenField name="urlSearchByTag" id="urlSearchByTag" value="${createLink(controller: 'search', action: 'searchByTag')}"/>
 	</body>
 </html>

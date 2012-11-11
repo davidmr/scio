@@ -8,9 +8,9 @@
 		</g:each>
 	</div>
 	<p>
-		<span class="font-little">${scio.owner}</span> - 
+		<span class="font-little">${scio?.owner?.fullname}</span> - 
 		<span class="font-little">
-			<g:snapshotDate snapshot="${scio.content()}" />
+			<g:snapshotDate snapshot="${scio?.content()}" />
 		</span>
 	</p>
 </g:each>

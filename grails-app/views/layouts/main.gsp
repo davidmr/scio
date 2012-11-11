@@ -8,7 +8,7 @@
 		<title>Scio - Share knowledge</title>
 	
 		<r:require module="core"/>
-		<link rel="shortcut icon" href="${resource(dir: 'images', file: 'owl.png')}" type="image/x-icon">
+		<link rel="shortcut icon" href="${resource(dir: 'images/icons', file: 'owl.png')}" type="image/x-icon">
 
 		<g:layoutHead />
 		<r:layoutResources />
@@ -52,19 +52,14 @@
 		<g:if test="${flash.message}">
 			<div class="alert-info">${flash.message}</div>
 		</g:if>
-		
-		<div class="row">
-			<g:layoutBody />
-		</div>
-
-		<div class="row footer">
-			<div class="span12">
-				<p>© SCIO 2012</p>
-			</div>
-		</div>
+			
+		<g:layoutBody />
+	
+		<r:layoutResources/>
 	</div>
 	
-	<r:layoutResources/>
-	<!-- /container -->
+	<div class="footer">
+		<p>© SCIO 2012</p>
+	</div>
 </body>
 </html>

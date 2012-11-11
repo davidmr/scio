@@ -10,7 +10,7 @@ modules = {
 	core {
 		dependsOn 'bootstrap'
 		resource url : 'css/main.css'
-		resource url : 'css/mybootstrap.css'
+		resource url : 'css/divs.css'
 		resource url : 'css/forms.css'
 		resource url : 'images/owl.png'
 	}
