@@ -16,7 +16,7 @@ class HomeController {
 	}
 	
 	def about(){
-		
+		return
 	}
 	
 }
